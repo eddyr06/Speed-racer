@@ -102,7 +102,7 @@ function animate() {
 
     ctx.drawImage(
         enemy.img, //img 
-        sx,  //sx
+        0,  //sx
         0,  //sy
         enemy.img.width / enemy.frames, //swidth
         enemy.img.height, //sheight
@@ -127,14 +127,14 @@ function moveHero() {
             if (keys[key]) {
                 hero.img.src = 'heroWalkLeft.png'
                 hero.frames = 8
-                hero.x -= 5
+                hero.x -= 0.5
                 hero.direction = 'left'
             }
         }
         if (key === "ArrowRight") {
             if (keys[key]) {
                 hero.img.src = 'heroWalk.png'
-                hero.x += 5
+                hero.x += 0.5
                 hero.frames = 8
                 hero.direction = 'right'
             }
@@ -142,7 +142,7 @@ function moveHero() {
         if (key === "ArrowUp") {
             if (keys[key]) {
                 hero.img.src = 'heroWalk.png'
-                hero.y -= 5
+                hero.y -= 0.5
                 hero.frames = 8
                 hero.direction = 'up'
             }
@@ -150,7 +150,7 @@ function moveHero() {
         if (key === "ArrowDown") {
             if (keys[key]) {
                 hero.img.src = 'heroWalk.png'
-                hero.y += 5
+                hero.y += 0.5
                 hero.frames = 8
                 hero.direction = 'down'
             }
@@ -178,20 +178,20 @@ window.onkeyup = function (e) {
         return
 
     }
-    // if (santa.direction == 'up') {
-    //     santa.img.src = 'santaIdleUp.png'
-    //     santa.frames = 16
+    if (hero.direction == 'up') {
+        hero.img.src = 'heroIdle.png'
+        hero.frames = 10
 
-    //     return
+        return
 
-    // }
-    // if (santa.direction == 'down') {
-    //     santa.img.src = 'santaIdleDown.png'
-    //     santa.frames = 16
+    }
+    if (hero.direction == 'down') {
+        hero.img.src = 'heroIdle.png'
+        hero.frames = 10
 
-    //     return
+        return
 
-    // }
+    }
 
 }
 
