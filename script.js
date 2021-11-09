@@ -4,14 +4,16 @@ canvas.height = 700
 const ctx = canvas.getContext('2d')
 
 const heroImg = new Image()
-heroImg.src = `../Images/Hero/heroIdleLeft.png`
-heroImg.src = `../Images/Hero/heroWalkLeft.png`
-heroImg.src = `../Images/Hero/heroWalk.png`
-heroImg.src = `../Images/Hero/heroIdle.png`
+heroImg.src = `heroIdleLeft.png`
+heroImg.src = `heroWalkLeft.png`
+heroImg.src = `heroWalk.png`
+heroImg.src = `heroIdle.png`
 heroImg.onload = () => { }
 
 const enemyImg = new Image()
-enemyImg.src = `../Images/Enemy/enemyIdle.png`
+enemyImg.src = `penguinEyeChange.png`
+enemyImg.src = `penguinRotation.png`
+enemyImg.src = `penguinIdle.png`
 enemyImg.onload = () => { }
 
 const rockImg = new Image()
@@ -20,6 +22,7 @@ rockImg.onload = () => { }
 
 let counter = 0;
 let sx = 0
+let esx= 0
 let keys = {}
 
 //Characters
@@ -36,10 +39,10 @@ let hero = {
 let enemy = {
     x: 600,
     y: 0,
-    w: (4500 / 16) * .5,
-    h: 200 * .5,
-    direction: 'right',
-    frames: 16,
+    w: (750/5)*.7,
+    h: 200*.7,
+    direction: 'up',
+    frames: 5,
     img: enemyImg
 }
 
@@ -102,7 +105,7 @@ function animate() {
 
     ctx.drawImage(
         enemy.img, //img 
-        0,  //sx
+        esx,  //sx
         0,  //sy
         enemy.img.width / enemy.frames, //swidth
         enemy.img.height, //sheight
@@ -125,7 +128,7 @@ function moveHero() {
     for (let key in keys) {
         if (key === "ArrowLeft") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalkLeft.png'
+                hero.img.src = 'heroWalkLeft.png'
                 hero.frames = 8
                 hero.x -= 0.5
                 hero.direction = 'left'
@@ -133,7 +136,7 @@ function moveHero() {
         }
         if (key === "ArrowRight") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = 'heroWalk.png'
                 hero.x += 0.5
                 hero.frames = 8
                 hero.direction = 'right'
@@ -141,7 +144,7 @@ function moveHero() {
         }
         if (key === "ArrowUp") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = 'heroWalk.png'
                 hero.y -= 0.5
                 hero.frames = 8
                 hero.direction = 'up'
@@ -149,7 +152,7 @@ function moveHero() {
         }
         if (key === "ArrowDown") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = 'heroWalk.png'
                 hero.y += 0.5
                 hero.frames = 8
                 hero.direction = 'down'
@@ -162,6 +165,9 @@ function moveHero() {
 function enemyTurn() {
 
     setInterval(() => {
+        enemy.img.src='penguinRotation.png'
+
+        //rotate by 4 / gamelevel
 
     }, Math.random() * 10000)
 
@@ -170,27 +176,27 @@ function enemyTurn() {
 window.onkeyup = function (e) {
     keys[e.key] = false;
     if (hero.direction == 'right') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
+        hero.img.src = 'heroIdle.png'
         hero.frames = 10
 
         return
     }
     if (hero.direction == 'left') {
-        hero.img.src = '../Images/Hero/heroIdleLeft.png'
+        hero.img.src = 'heroIdleLeft.png'
         hero.frames = 10
 
         return
 
     }
     if (hero.direction == 'up') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
+        hero.img.src = 'heroIdle.png'
         hero.frames = 10
 
         return
 
     }
     if (hero.direction == 'down') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
+        hero.img.src = 'heroIdle.png'
         hero.frames = 10
 
         return
@@ -202,3 +208,21 @@ window.onkeyup = function (e) {
 window.onkeydown = function (e) {
     keys[e.key] = true;
 };
+
+
+
+
+
+
+
+
+
+// class Santa {
+//     constructor(x,y,src){
+//         this.x = x
+//         this.y = y
+//         this.src = src
+//         this.image = new Image() 
+//     }
+
+// } 
