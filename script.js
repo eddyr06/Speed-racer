@@ -14,6 +14,10 @@ const enemyImg = new Image()
 enemyImg.src = `enemyIdle.png`
 enemyImg.onload = () => { }
 
+const rockImg = new Image()
+rockImg.src = 'rock.png'
+rockImg.onload = () => { }
+
 let counter = 0;
 let sx = 0
 let keys = {}
@@ -39,7 +43,26 @@ let enemy = {
     img: enemyImg
 }
 
+class Rock {
+    constructor(id){
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.w = rockImg.width;
+    this.h = rockImg.height;
+    this.img = rock.Img
+    }
+}
 
+let rockArr = []
+let id = 0
+
+function addRock(){
+    for (let i = levelCounter;levelCounter>=0;i++){
+    rockArr.push(new Rock(id++))
+}
+}
+
+let levelCounter = 0
 
 //Game Engine 
 function animate() {
