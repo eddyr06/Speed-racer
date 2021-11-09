@@ -42,10 +42,10 @@ let hero = {
 let enemy = {
     x: 600,
     y: 0,
-    w: (enemyImg.width / 16) * .5,
+    w: (enemyImg.width / 5) * .5,
     h: 200 * .5,
     direction: 'right',
-    frames: 16,
+    frames: 5,
     img: enemyImg
 }
 
@@ -130,16 +130,16 @@ function animate() {
     if (counter % 100 === 0 && completeLoop === true) {
         if (Math.floor(Math.random() * 10) === 4) {
             completeLoop = false
-            enemy.img = `../Images/Enemy/penguinRotation.png`
+            enemy.img = `../Images/Enemy/enemyIdle.png`
             setInterval(frame, 2000)
             function frame(){
-                enemy.img = `../Images/Enemy/penguinRotation.png`
-                esx = (enemy.img.width - enemy.img.width / 2)
-                setInterval(frame2, 2000)
+                enemy.img = `../Images/Enemy/enemyIdle.png`
+                // esx = (enemy.img.width - enemy.img.width / 2)
+                setInterval(frame2, 4000)
                 function frame2(){
-                    enemy.img = `../Images/Enemy/penguinRotation.png`
-                    esx = (enemy.img.width - enemy.img.width / 3)
-                    setInterval(frame3, 5000)
+                    enemy.img = `../Images/Enemy/enemyIdle.png`
+                    // esx = (enemy.img.width - enemy.img.width / 3)
+                    setInterval(frame3, 9000)
                 }
             }
     }
