@@ -13,12 +13,33 @@ canvas {
 
 }
 
-section{
+#infobar{
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-direction: row;
 }
 
+#info{
+  /* width: 50%; */
+}
+
+#score{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  /* width: 50%; */
+}
+
+.timer{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 30px auto;
+  font-size: 50px;
+  color: blue;
+}
 
 /* body{
     /* background:red; */
