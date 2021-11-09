@@ -15,7 +15,7 @@ enemyImg.src = `../Images/Enemy/enemyIdle.png`
 enemyImg.onload = () => { }
 
 const rockImg = new Image()
-rockImg.src = 'rock.png'
+rockImg.src = '../Images/Obstacles/rock.png'
 rockImg.onload = () => { }
 
 let counter = 0;
