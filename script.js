@@ -38,7 +38,7 @@ let hero = {
 let enemy = {
     x: 600,
     y: 0,
-    w: (4500 / 16) * .5,
+    w: (3500 / 16) * .5,
     h: 200 * .5,
     direction: 'right',
     frames: 16,
