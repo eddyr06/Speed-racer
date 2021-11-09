@@ -13,6 +13,7 @@ heroImg.src = `../Images/Hero/heroIdle.png`
 heroImg.onload = () => { }
 
 const enemyImg = new Image()
+enemyImg.src = `../Images/Enemy/penguinRotation.png`
 enemyImg.src = `../Images/Enemy/enemyIdle.png`
 enemyImg.onload = () => { }
 
@@ -164,7 +165,6 @@ function moveHero() {
 function enemyTurn() {
 
     setInterval(() => {
-
     }, Math.random() * 10000)
 
 }
