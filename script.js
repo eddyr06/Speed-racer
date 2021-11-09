@@ -24,20 +24,20 @@ let keys = {}
 
 //Characters
 let hero = {
-    x: 450,
-    y: 400,
+    x: 620,
+    y: 650,
     w: (1200 / 10) * .5,
     h: 100 * .5,
-    direction: 'right',
+    direction: 'up',
     frames: 10,
     img: heroImg
 }
 
 let enemy = {
-    x: 450,
+    x: 600,
     y: 0,
-    w: (enemyImg.width / 16) * .5,
-    h: enemyImg.height * .5,
+    w: (4500 / 16) * .5,
+    h: 200 * .5,
     direction: 'right',
     frames: 16,
     img: enemyImg
@@ -160,6 +160,10 @@ function moveHero() {
 }
 
 function enemyTurn() {
+
+    setInterval(() => {
+
+    }, Math.random() * 10000)
 
 }
 
