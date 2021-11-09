@@ -24,6 +24,7 @@ rockImg.src = '../Images/Obstacles/rock.png'
 rockImg.onload = () => { }
 
 let counter = 0;
+let esx = 0
 let sx = 0
 let keys = {}
 
@@ -41,7 +42,7 @@ let hero = {
 let enemy = {
     x: 600,
     y: 0,
-    w: (3500 / 16) * .5,
+    w: (enemyImg.width / 16) * .5,
     h: 200 * .5,
     direction: 'right',
     frames: 16,
@@ -91,6 +92,15 @@ function animate() {
         sx += hero.img.width / hero.frames
     }
 
+      //Resets sprite so it goes backs to beginning when reaches end. 
+      if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
+        esx = 0
+    }
+    //It it controls the speed of how fast its going through the sheet
+    // if (counter % 150 === 0) {
+    //     esx += enemy.img.width / enemy.frames
+    // }
+
     //Draws the picture
     //context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
     ctx.drawImage(
@@ -107,7 +117,7 @@ function animate() {
 
     ctx.drawImage(
         enemy.img, //img 
-        0,  //sx
+        esx,  //sx
         0,  //sy
         enemy.img.width / enemy.frames, //swidth
         enemy.img.height, //sheight
@@ -119,7 +129,11 @@ function animate() {
 
     // console.log(keys)
     moveHero()
-    enemyTurn()
+    if (counter % 10 === 0){
+       if (Math.floor(Math.random()*5) === 4){
+           enemyTurn()
+       } 
+    }
 }
 
 animate()
@@ -165,9 +179,18 @@ function moveHero() {
 }
 
 function enemyTurn() {
-
-    setInterval(() => {
-    }, Math.random() * 10000)
+        enemy.img.src = `../Images/Enemy/penguinRotation.png`
+        enemy.frames = 5
+        var id = setInterval(frame, 5000);
+        function frame(){
+            if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / enemy.frames)){
+                clearInterval(id)
+            }
+            else 
+            if (counter % 10 === 0) {
+                esx += enemy.img.width / enemy.frames
+            }
+        }
 
 }
 
