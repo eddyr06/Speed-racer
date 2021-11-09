@@ -17,7 +17,7 @@ enemyImg.src = `penguinIdle.png`
 enemyImg.onload = () => { }
 
 const rockImg = new Image()
-rockImg.src = '../Images/Obstacles/rock.png'
+rockImg.src = 'rock.png'
 rockImg.onload = () => { }
 
 let counter = 0;
@@ -88,7 +88,12 @@ function animate() {
     if (counter % 5 === 0) {
         sx += hero.img.width / hero.frames
     }
-
+    if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
+        esx = 0
+    }
+    if (counter % 5 === 0) {
+            esx += enemy.img.width / enemy.frames
+    }
     //Draws the picture
     //context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
     ctx.drawImage(
@@ -224,5 +229,3 @@ window.onkeydown = function (e) {
 //         this.src = src
 //         this.image = new Image() 
 //     }
-
-// } 
