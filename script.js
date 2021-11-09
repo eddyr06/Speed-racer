@@ -92,10 +92,7 @@ function animate() {
         sx += hero.img.width / hero.frames
     }
 
-    //Resets sprite so it goes backs to beginning when reaches end. 
-    if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
-        esx = 0
-    }
+    //Resets sprite so it goes backs to beginning when reaches end.
     //It it controls the speed of how fast its going through the sheet
     // if (counter % 150 === 0) {
     //     esx += enemy.img.width / enemy.frames
@@ -129,12 +126,25 @@ function animate() {
 
     // console.log(keys)
     moveHero()
-    if (counter % 10 === 0) {
-        if (Math.floor(Math.random() * 5) === 4) {
-            enemyTurn()
-        }
+    let completeLoop = true
+    if (counter % 100 === 0 && completeLoop === true) {
+        if (Math.floor(Math.random() * 10) === 4) {
+            completeLoop = false
+            enemy.img = `../Images/Enemy/penguinRotation.png`
+            setInterval(frame, 2000)
+            function frame(){
+                enemy.img = `../Images/Enemy/penguinRotation.png`
+                esx = (enemy.img.width - enemy.img.width / 2)
+                setInterval(frame2, 2000)
+                function frame2(){
+                    enemy.img = `../Images/Enemy/penguinRotation.png`
+                    esx = (enemy.img.width - enemy.img.width / 3)
+                    setInterval(frame3, 5000)
+                }
+            }
     }
 
+}
 }
 
 animate()
@@ -178,25 +188,6 @@ function moveHero() {
 
     }
 }
-//hi eddy
-function enemyTurn() {
-        enemy.img.src = `../Images/Enemy/penguinRotation.png`
-        enemy.frames = 5
-        esx = 0
-        var id = setInterval(frame, 5000);
-        function frame(){
-            if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / 3)){
-                var of = setInterval(check, 5000);
-                esx = enemy.img.width/3
-                function check(){
-                    esx = enemy.img.width/3
-
-
-                }
-            }
-            else esx += enemy.img.width / enemy.frames
-            }
-    }
 
 window.onkeyup = function (e) {
     keys[e.key] = false;
