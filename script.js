@@ -4,16 +4,14 @@ canvas.height = 700
 const ctx = canvas.getContext('2d')
 
 const heroImg = new Image()
-heroImg.src = `../Images/Hero/runningUp.png`
-heroImg.src = `../Images/Hero/runningDown.png`
-heroImg.src = `../Images/Hero/runningLeft.png`
-heroImg.src = `../Images/Hero/runningRight.png`
+heroImg.src = `../Images/Hero/heroIdleLeft.png`
+heroImg.src = `../Images/Hero/heroWalkLeft.png`
+heroImg.src = `../Images/Hero/heroWalk.png`
+heroImg.src = `../Images/Hero/heroIdle.png`
 heroImg.onload = () => { }
 
 const enemyImg = new Image()
-enemyImg.src = `../Images/Enemy/penguinEyeChange.png`
-enemyImg.src = `../Images/Enemy/penguinRotation.png`
-enemyImg.src = `../Images/Enemy/penguinIdle.png`
+enemyImg.src = `../Images/Enemy/enemyIdle.png`
 enemyImg.onload = () => { }
 
 const rockImg = new Image()
@@ -22,27 +20,26 @@ rockImg.onload = () => { }
 
 let counter = 0;
 let sx = 0
-let esx = 0
 let keys = {}
 
 //Characters
 let hero = {
-    x: 420,
+    x: 620,
     y: 650,
-    w: (1200 / 4) * .5,
+    w: (1200 / 10) * .5,
     h: 100 * .5,
     direction: 'up',
-    frames: 4,
+    frames: 10,
     img: heroImg
 }
 
 let enemy = {
     x: 600,
     y: 0,
-    w: (750 / 5) * .7,
-    h: 200 * .7,
-    direction: 'up',
-    frames: 5,
+    w: (4500 / 16) * .5,
+    h: 200 * .5,
+    direction: 'right',
+    frames: 16,
     img: enemyImg
 }
 
@@ -83,27 +80,12 @@ function animate() {
     //Resets sprite so it goes backs to beginning when reaches end. 
     if (sx >= (hero.img.width - hero.img.width / hero.frames)) {
         sx = 0
-    
+    }
     //It it controls the speed of how fast its going through the sheet
     if (counter % 5 === 0) {
         sx += hero.img.width / hero.frames
-<<<<<<< HEAD
     }
 
-=======
-    }}
->>>>>>> 3b3f8932d8835c481006b792195d7544a3a580cc
-    if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
-        esx = 0
-    
-    if (counter % 5 === 0) {
-<<<<<<< HEAD
-            esx += enemy.img.width / enemy.frames
-    }}
-=======
-        esx += enemy.img.width / enemy.frames
-    }
->>>>>>> 50b9d8a32efac5ebb7a156433de5ec4feba5d466
     //Draws the picture
     //context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
     ctx.drawImage(
@@ -120,7 +102,7 @@ function animate() {
 
     ctx.drawImage(
         enemy.img, //img 
-        esx,  //sx
+        0,  //sx
         0,  //sy
         enemy.img.width / enemy.frames, //swidth
         enemy.img.height, //sheight
@@ -143,33 +125,33 @@ function moveHero() {
     for (let key in keys) {
         if (key === "ArrowLeft") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/runningLeft.png'
-                hero.frames = 4
+                hero.img.src = '../Images/Hero/heroWalkLeft.png'
+                hero.frames = 8
                 hero.x -= 0.5
                 hero.direction = 'left'
             }
         }
         if (key === "ArrowRight") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/runningRight.png'
+                hero.img.src = '../Images/Hero/heroWalk.png'
                 hero.x += 0.5
-                hero.frames = 4
+                hero.frames = 8
                 hero.direction = 'right'
             }
         }
         if (key === "ArrowUp") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/runningUp.png'
+                hero.img.src = '../Images/Hero/heroWalk.png'
                 hero.y -= 0.5
-                hero.frames = 4
+                hero.frames = 8
                 hero.direction = 'up'
             }
         }
         if (key === "ArrowDown") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/runningDown.png'
+                hero.img.src = '../Images/Hero/heroWalk.png'
                 hero.y += 0.5
-                hero.frames = 4
+                hero.frames = 8
                 hero.direction = 'down'
             }
         }
@@ -180,9 +162,6 @@ function moveHero() {
 function enemyTurn() {
 
     setInterval(() => {
-        enemy.img.src = '../Images/Enemy/penguinRotation.png'
-
-        //rotate by 4 / gamelevel
 
     }, Math.random() * 10000)
 
@@ -191,28 +170,28 @@ function enemyTurn() {
 window.onkeyup = function (e) {
     keys[e.key] = false;
     if (hero.direction == 'right') {
-        hero.img.src = '../Images/Hero/runningRight.png'
-        hero.frames = 4
+        hero.img.src = '../Images/Hero/heroIdle.png'
+        hero.frames = 10
 
         return
     }
     if (hero.direction == 'left') {
-        hero.img.src = '../Images/Hero/runningLeft.png'
-        hero.frames = 4
+        hero.img.src = '../Images/Hero/heroIdleLeft.png'
+        hero.frames = 10
 
         return
 
     }
     if (hero.direction == 'up') {
-        hero.img.src = '../Images/Hero/runningUp.png'
-        hero.frames = 4
+        hero.img.src = '../Images/Hero/heroIdle.png'
+        hero.frames = 10
 
         return
 
     }
     if (hero.direction == 'down') {
-        hero.img.src = '../Images/Hero/runningDown.png'
-        hero.frames = 4
+        hero.img.src = '../Images/Hero/heroIdle.png'
+        hero.frames = 10
 
         return
 
@@ -223,19 +202,3 @@ window.onkeyup = function (e) {
 window.onkeydown = function (e) {
     keys[e.key] = true;
 };
-
-
-
-
-
-
-
-
-
-// class Santa {
-//     constructor(x,y,src){
-//         this.x = x
-//         this.y = y
-//         this.src = src
-//         this.image = new Image() 
-//     }
