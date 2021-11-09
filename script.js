@@ -5,7 +5,6 @@ const ctx = canvas.getContext('2d')
 
 const santaImg = new Image()
 santaImg.src = `santaIdleLeft.png`
-
 santaImg.src = `santaWalkLeft.png`
 santaImg.src = `santaWalk.png`
 santaImg.src = `santaIdle.png`
@@ -16,7 +15,7 @@ let counter = 0;
 let sx = 0
 let keys = {}
 
-
+//Characters
 let santa = {
     x: 0,
     y: 100,
@@ -27,7 +26,15 @@ let santa = {
     img: santaImg
 }
 
-
+let enemy = {
+    x: 0,
+    y: 300,
+    w: (santaImg.width / 16) * .5,
+    h: santaImg.height * .5,
+    direction: 'right',
+    frames: 16,
+    img: santaImg
+}
 
 
 
