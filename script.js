@@ -184,7 +184,7 @@ function enemyTurn() {
         esx = 0
         var id = setInterval(frame, 500);
         function frame(){
-            if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / enemy.frames)){
+            if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / 3)){
                 clearInterval(id)
             }
             else 
