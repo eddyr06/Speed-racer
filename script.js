@@ -5,8 +5,10 @@ const ctx = canvas.getContext('2d')
 
 const heroImg = new Image()
 heroImg.src = `../Images/Hero/heroIdleLeft.png`
-heroImg.src = `../Images/Hero/heroWalkLeft.png`
-heroImg.src = `../Images/Hero/heroWalk.png`
+heroImg.src = `../Images/Hero/runningLeft.png`
+heroImg.src = `../Images/Hero/runningRight.png`
+heroImg.src = `../Images/Hero/runningUp.png`
+heroImg.src = `../Images/Hero/runningDown.png`
 heroImg.src = `../Images/Hero/heroIdle.png`
 heroImg.onload = () => { }
 
@@ -125,33 +127,33 @@ function moveHero() {
     for (let key in keys) {
         if (key === "ArrowLeft") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalkLeft.png'
-                hero.frames = 8
+                hero.img.src = '../Images/Hero/runningLeft.png'
                 hero.x -= 0.5
+                hero.frames = 4
                 hero.direction = 'left'
             }
         }
         if (key === "ArrowRight") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = '../Images/Hero/runningRight.png'
                 hero.x += 0.5
-                hero.frames = 8
+                hero.frames = 4
                 hero.direction = 'right'
             }
         }
         if (key === "ArrowUp") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = '../Images/Hero/runningUp.png'
                 hero.y -= 0.5
-                hero.frames = 8
+                hero.frames = 4
                 hero.direction = 'up'
             }
         }
         if (key === "ArrowDown") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = '../Images/Hero/runningDown.png'
                 hero.y += 0.5
-                hero.frames = 8
+                hero.frames = 4
                 hero.direction = 'down'
             }
         }
