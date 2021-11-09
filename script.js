@@ -92,8 +92,8 @@ function animate() {
         sx += hero.img.width / hero.frames
     }
 
-      //Resets sprite so it goes backs to beginning when reaches end. 
-      if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
+    //Resets sprite so it goes backs to beginning when reaches end. 
+    if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
         esx = 0
     }
     //It it controls the speed of how fast its going through the sheet
@@ -129,11 +129,12 @@ function animate() {
 
     // console.log(keys)
     moveHero()
-    if (counter % 10 === 0){
-       if (Math.floor(Math.random()*5) === 4){
-           enemyTurn()
-       } 
+    if (counter % 10 === 0) {
+        if (Math.floor(Math.random() * 5) === 4) {
+            enemyTurn()
+        }
     }
+
 }
 
 animate()
@@ -179,19 +180,19 @@ function moveHero() {
 }
 //hi eddy
 function enemyTurn() {
-        enemy.img.src = `../Images/Enemy/penguinRotation.png`
-        enemy.frames = 5
-        esx = 0
-        var id = setInterval(frame, 5000);
-        function frame(){
-            if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / 3)){
-                clearInterval(id)
-            }
-            else 
+    enemy.img.src = `../Images/Enemy/penguinRotation.png`
+    enemy.frames = 5
+    esx = 0
+    var id = setInterval(frame, 5000);
+    function frame() {
+        if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / 3)) {
+            clearInterval(id)
+        }
+        else
             if (counter % 30 === 0) {
                 esx += enemy.img.width / enemy.frames
             }
-        }
+    }
 
 }
 
@@ -265,4 +266,8 @@ function GameTimer() {
 countdownTimer = setInterval(GameTimer, 1000);
 
 
-// window.location.reload(.btn)
+//New Game Button
+document.querySelector('#btn').addEventListener('click', function () {
+    window.location.reload();
+    return false;
+});
