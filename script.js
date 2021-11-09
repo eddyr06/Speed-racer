@@ -185,15 +185,17 @@ function enemyTurn() {
         var id = setInterval(frame, 5000);
         function frame(){
             if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / 3)){
-                clearInterval(id)
+                var of = setInterval(check, 5000);
+                esx = enemy.img.width/3
+                function check(){
+                    esx = enemy.img.width/3
+
+
+                }
             }
-            else 
-            if (counter % 30 === 0) {
-                esx += enemy.img.width / enemy.frames
+            else esx += enemy.img.width / enemy.frames
             }
         }
-
-}
 
 window.onkeyup = function (e) {
     keys[e.key] = false;
