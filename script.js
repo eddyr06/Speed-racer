@@ -177,7 +177,7 @@ function moveHero() {
 
     }
 }
-
+//hi eddy
 function enemyTurn() {
         enemy.img.src = `../Images/Enemy/penguinRotation.png`
         enemy.frames = 5
