@@ -26,8 +26,8 @@ let keys = {}
 let hero = {
     x: 450,
     y: 400,
-    w: (heroImg.width / 10) * .5,
-    h: heroImg.height * .5,
+    w: (1200 / 10) * .5,
+    h: 100 * .5,
     direction: 'right',
     frames: 10,
     img: heroImg
@@ -44,22 +44,22 @@ let enemy = {
 }
 
 class Rock {
-    constructor(id){
-    this.x = Math.random()*canvas.width;
-    this.y = Math.random()*canvas.height;
-    this.w = rockImg.width;
-    this.h = rockImg.height;
-    this.img = rock.Img
+    constructor(id) {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.w = rockImg.width;
+        this.h = rockImg.height;
+        this.img = rock.Img
     }
 }
 
 let rockArr = []
 let id = 0
 
-function addRock(){
-    for (let i = levelCounter;levelCounter>=0;i++){
-    rockArr.push(new Rock(id++))
-}
+function addRock() {
+    for (let i = levelCounter; levelCounter >= 0; i++) {
+        rockArr.push(new Rock(id++))
+    }
 }
 
 let levelCounter = 0
