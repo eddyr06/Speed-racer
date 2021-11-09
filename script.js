@@ -4,10 +4,10 @@ canvas.height = 700
 const ctx = canvas.getContext('2d')
 
 const heroImg = new Image()
-heroImg.src = `../Images/Hero/heroIdleLeft.png`
-heroImg.src = `../Images/Hero/heroWalkLeft.png`
-heroImg.src = `../Images/Hero/heroWalk.png`
-heroImg.src = `../Images/Hero/heroIdle.png`
+heroImg.src = `../Images/Hero/runningUp.png`
+heroImg.src = `../Images/Hero/runningDown.png`
+heroImg.src = `../Images/Hero/runningLeft.png`
+heroImg.src = `../Images/Hero/runningRight.png`
 heroImg.onload = () => { }
 
 const enemyImg = new Image()
@@ -29,10 +29,10 @@ let keys = {}
 let hero = {
     x: 420,
     y: 650,
-    w: (1200 / 10) * .5,
+    w: (1200 / 4) * .5,
     h: 100 * .5,
     direction: 'up',
-    frames: 10,
+    frames: 4,
     img: heroImg
 }
 
@@ -88,6 +88,7 @@ function animate() {
     if (counter % 5 === 0) {
         sx += hero.img.width / hero.frames
     }
+
     if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
         esx = 0
     }
@@ -133,33 +134,33 @@ function moveHero() {
     for (let key in keys) {
         if (key === "ArrowLeft") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalkLeft.png'
-                hero.frames = 8
+                hero.img.src = '../Images/Hero/runningLeft.png'
+                hero.frames = 4
                 hero.x -= 0.5
                 hero.direction = 'left'
             }
         }
         if (key === "ArrowRight") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = '../Images/Hero/runningRight.png'
                 hero.x += 0.5
-                hero.frames = 8
+                hero.frames = 4
                 hero.direction = 'right'
             }
         }
         if (key === "ArrowUp") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = '../Images/Hero/runningUp.png'
                 hero.y -= 0.5
-                hero.frames = 8
+                hero.frames = 4
                 hero.direction = 'up'
             }
         }
         if (key === "ArrowDown") {
             if (keys[key]) {
-                hero.img.src = '../Images/Hero/heroWalk.png'
+                hero.img.src = '../Images/Hero/runningDown.png'
                 hero.y += 0.5
-                hero.frames = 8
+                hero.frames = 4
                 hero.direction = 'down'
             }
         }
@@ -181,28 +182,28 @@ function enemyTurn() {
 window.onkeyup = function (e) {
     keys[e.key] = false;
     if (hero.direction == 'right') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/runningRight.png'
+        hero.frames = 4
 
         return
     }
     if (hero.direction == 'left') {
-        hero.img.src = '../Images/Hero/heroIdleLeft.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/runningLeft.png'
+        hero.frames = 4
 
         return
 
     }
     if (hero.direction == 'up') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/runningUp.png'
+        hero.frames = 4
 
         return
 
     }
     if (hero.direction == 'down') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/runningDown.png'
+        hero.frames = 4
 
         return
 
