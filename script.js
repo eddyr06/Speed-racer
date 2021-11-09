@@ -1,6 +1,6 @@
 const canvas = document.querySelector('canvas')
 canvas.width = window.innerWidth
-canvas.height = 500
+canvas.height = 700
 const ctx = canvas.getContext('2d')
 
 const santaImg = new Image()
@@ -10,6 +10,9 @@ santaImg.src = `santaWalk.png`
 santaImg.src = `santaIdle.png`
 santaImg.onload = () => { }
 
+const enemyImg = new Image()
+enemyImg.src = `enemyIdle.png`
+enemyImg.onload = () => { }
 
 let counter = 0;
 let sx = 0
@@ -17,8 +20,8 @@ let keys = {}
 
 //Characters
 let santa = {
-    x: 0,
-    y: 100,
+    x: 450,
+    y: 400,
     w: (santaImg.width / 16) * .5,
     h: santaImg.height * .5,
     direction: 'right',
@@ -27,13 +30,13 @@ let santa = {
 }
 
 let enemy = {
-    x: 0,
-    y: 300,
-    w: (santaImg.width / 16) * .5,
-    h: santaImg.height * .5,
+    x: 450,
+    y: 0,
+    w: (enemyImg.width / 16) * .5,
+    h: enemyImg.height * .5,
     direction: 'right',
     frames: 16,
-    img: santaImg
+    img: enemyImg
 }
 
 
@@ -74,8 +77,21 @@ function animate() {
         santa.h//height
     )
 
+    ctx.drawImage(
+        enemy.img, //img 
+        sx,  //sx
+        0,  //sy
+        enemy.img.width / enemy.frames, //swidth
+        enemy.img.height, //sheight
+        enemy.x, //x
+        enemy.y, //y
+        enemy.w, //width
+        enemy.h//height
+    )
+
     // console.log(keys)
     swapSanta()
+    enemyTurn()
 }
 
 animate()
@@ -102,6 +118,10 @@ function swapSanta() {
         }
 
     }
+}
+
+function enemyTurn() {
+
 }
 
 window.onkeyup = function (e) {
