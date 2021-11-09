@@ -4,14 +4,14 @@ canvas.height = 700
 const ctx = canvas.getContext('2d')
 
 const heroImg = new Image()
-heroImg.src = `heroIdleLeft.png`
-heroImg.src = `heroWalkLeft.png`
-heroImg.src = `heroWalk.png`
-heroImg.src = `heroIdle.png`
+heroImg.src = `../Images/Hero/heroIdleLeft.png`
+heroImg.src = `../Images/Hero/heroWalkLeft.png`
+heroImg.src = `../Images/Hero/heroWalk.png`
+heroImg.src = `../Images/Hero/heroIdle.png`
 heroImg.onload = () => { }
 
 const enemyImg = new Image()
-enemyImg.src = `enemyIdle.png`
+enemyImg.src = `../Images/Enemy/enemyIdle.png`
 enemyImg.onload = () => { }
 
 const rockImg = new Image()
@@ -125,7 +125,7 @@ function moveHero() {
     for (let key in keys) {
         if (key === "ArrowLeft") {
             if (keys[key]) {
-                hero.img.src = 'heroWalkLeft.png'
+                hero.img.src = '../Images/Hero/heroWalkLeft.png'
                 hero.frames = 8
                 hero.x -= 0.5
                 hero.direction = 'left'
@@ -133,7 +133,7 @@ function moveHero() {
         }
         if (key === "ArrowRight") {
             if (keys[key]) {
-                hero.img.src = 'heroWalk.png'
+                hero.img.src = '../Images/Hero/heroWalk.png'
                 hero.x += 0.5
                 hero.frames = 8
                 hero.direction = 'right'
@@ -141,7 +141,7 @@ function moveHero() {
         }
         if (key === "ArrowUp") {
             if (keys[key]) {
-                hero.img.src = 'heroWalk.png'
+                hero.img.src = '../Images/Hero/heroWalk.png'
                 hero.y -= 0.5
                 hero.frames = 8
                 hero.direction = 'up'
@@ -149,7 +149,7 @@ function moveHero() {
         }
         if (key === "ArrowDown") {
             if (keys[key]) {
-                hero.img.src = 'heroWalk.png'
+                hero.img.src = '../Images/Hero/heroWalk.png'
                 hero.y += 0.5
                 hero.frames = 8
                 hero.direction = 'down'
@@ -170,27 +170,27 @@ function enemyTurn() {
 window.onkeyup = function (e) {
     keys[e.key] = false;
     if (hero.direction == 'right') {
-        hero.img.src = 'heroIdle.png'
+        hero.img.src = '../Images/Hero/heroIdle.png'
         hero.frames = 10
 
         return
     }
     if (hero.direction == 'left') {
-        hero.img.src = 'heroIdleLeft.png'
+        hero.img.src = '../Images/Hero/heroIdleLeft.png'
         hero.frames = 10
 
         return
 
     }
     if (hero.direction == 'up') {
-        hero.img.src = 'heroIdle.png'
+        hero.img.src = '../Images/Hero/heroIdle.png'
         hero.frames = 10
 
         return
 
     }
     if (hero.direction == 'down') {
-        hero.img.src = 'heroIdle.png'
+        hero.img.src = '../Images/Hero/heroIdle.png'
         hero.frames = 10
 
         return
@@ -202,21 +202,3 @@ window.onkeyup = function (e) {
 window.onkeydown = function (e) {
     keys[e.key] = true;
 };
-
-
-
-
-
-
-
-
-
-// class Santa {
-//     constructor(x,y,src){
-//         this.x = x
-//         this.y = y
-//         this.src = src
-//         this.image = new Image() 
-//     }
-
-// } 
