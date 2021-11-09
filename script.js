@@ -4,12 +4,14 @@ canvas.height = 700
 const ctx = canvas.getContext('2d')
 
 const heroImg = new Image()
-heroImg.src = `../Images/Hero/heroIdleLeft.png`
+heroImg.src = `../Images/Hero/idleLeft.png`
+heroImg.src = `../Images/Hero/idleRight.png`
+heroImg.src = `../Images/Hero/idleUp.png`
+heroImg.src = `../Images/Hero/idleDown.png`
 heroImg.src = `../Images/Hero/runningLeft.png`
 heroImg.src = `../Images/Hero/runningRight.png`
 heroImg.src = `../Images/Hero/runningUp.png`
 heroImg.src = `../Images/Hero/runningDown.png`
-heroImg.src = `../Images/Hero/heroIdle.png`
 heroImg.onload = () => { }
 
 const enemyImg = new Image()
@@ -32,7 +34,7 @@ let hero = {
     w: (1200 / 10) * .5,
     h: 100 * .5,
     direction: 'up',
-    frames: 10,
+    frames: 4,
     img: heroImg
 }
 
@@ -172,28 +174,28 @@ function enemyTurn() {
 window.onkeyup = function (e) {
     keys[e.key] = false;
     if (hero.direction == 'right') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/idleRight.png'
+        hero.frames = 4
 
         return
     }
     if (hero.direction == 'left') {
-        hero.img.src = '../Images/Hero/heroIdleLeft.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/idleLeft.png'
+        hero.frames = 4
 
         return
 
     }
     if (hero.direction == 'up') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/idleUp.png'
+        hero.frames = 4
 
         return
 
     }
     if (hero.direction == 'down') {
-        hero.img.src = '../Images/Hero/heroIdle.png'
-        hero.frames = 10
+        hero.img.src = '../Images/Hero/idleDown.png'
+        hero.frames = 4
 
         return
 
