@@ -232,28 +232,29 @@ window.onkeydown = function (e) {
 };
 
 
-
+//Timer
 var isWaiting = false;
 var isRunning = false;
-var seconds = 10;
+var seconds = 300;
 var countdownTimer;
 var finalCountdown = false;
 
 function GameTimer() {
     var minutes = Math.round((seconds - 30) / 60);
     var remainingSeconds = seconds % 60;
-    if (remainingSeconds < 1000) {
+    if (remainingSeconds < 10) {
         remainingSeconds = "0" + remainingSeconds;
     }
     document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
     if (seconds == 0) {
         isRunning = true;
-        seconds += 2;
 
         if (finalCountdown) {
             clearInterval(countdownTimer);
         } else {
             finalCountdown = true;
+            alert('Game Over')
+            window.location.reload()
         }
 
     } else {
@@ -262,3 +263,6 @@ function GameTimer() {
     }
 }
 countdownTimer = setInterval(GameTimer, 1000);
+
+
+// window.location.reload(.btn)
