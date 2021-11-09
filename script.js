@@ -83,17 +83,17 @@ function animate() {
     //Resets sprite so it goes backs to beginning when reaches end. 
     if (sx >= (hero.img.width - hero.img.width / hero.frames)) {
         sx = 0
-    }
+    
     //It it controls the speed of how fast its going through the sheet
     if (counter % 5 === 0) {
         sx += hero.img.width / hero.frames
-    }
+    }}
     if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
         esx = 0
-    }
+    
     if (counter % 5 === 0) {
             esx += enemy.img.width / enemy.frames
-    }
+    }}
     //Draws the picture
     //context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
     ctx.drawImage(
