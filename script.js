@@ -182,13 +182,13 @@ function enemyTurn() {
         enemy.img.src = `../Images/Enemy/penguinRotation.png`
         enemy.frames = 5
         esx = 0
-        var id = setInterval(frame, 500);
+        var id = setInterval(frame, 5000);
         function frame(){
             if ((enemy.img.width - enemy.img.width / enemy.frames) === (enemy.img.width - enemy.img.width / 3)){
                 clearInterval(id)
             }
             else 
-            if (counter % 10 === 0) {
+            if (counter % 30 === 0) {
                 esx += enemy.img.width / enemy.frames
             }
         }
