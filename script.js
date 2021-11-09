@@ -33,7 +33,7 @@ let hero = {
     w: (1200 / 10) * .5,
     h: 100 * .5,
     direction: 'up',
-    frames: 10,
+    frames: 4,
     img: heroImg
 }
 
