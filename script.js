@@ -92,8 +92,8 @@ function animate() {
         sx += hero.img.width / hero.frames
     }
 
-      //Resets sprite so it goes backs to beginning when reaches end. 
-      if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
+    //Resets sprite so it goes backs to beginning when reaches end. 
+    if (esx >= (enemy.img.width - enemy.img.width / enemy.frames)) {
         esx = 0
     }
     //It it controls the speed of how fast its going through the sheet
@@ -129,11 +129,12 @@ function animate() {
 
     // console.log(keys)
     moveHero()
-    if (counter % 10 === 0){
-       if (Math.floor(Math.random()*5) === 4){
-           enemyTurn()
-       } 
+    if (counter % 10 === 0) {
+        if (Math.floor(Math.random() * 5) === 4) {
+            enemyTurn()
+        }
     }
+
 }
 
 animate()
@@ -195,7 +196,7 @@ function enemyTurn() {
             }
             else esx += enemy.img.width / enemy.frames
             }
-        }
+    }
 
 window.onkeyup = function (e) {
     keys[e.key] = false;
@@ -267,4 +268,8 @@ function GameTimer() {
 countdownTimer = setInterval(GameTimer, 1000);
 
 
-// window.location.reload(.btn)
+//New Game Button
+document.querySelector('#btn').addEventListener('click', function () {
+    window.location.reload();
+    return false;
+});
