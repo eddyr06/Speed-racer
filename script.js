@@ -93,6 +93,22 @@ function swapSanta() {
                 santa.direction = 'right'
             }
         }
+        if (key === "ArrowUp") {
+            if (keys[key]) {
+                santa.img.src = 'santaWalk.png'
+                santa.y -= 5
+                santa.frames = 13
+                santa.direction = 'up'
+            }
+        }
+        if (key === "ArrowDown") {
+            if (keys[key]) {
+                santa.img.src = 'santaWalk.png'
+                santa.y += 5
+                santa.frames = 13
+                santa.direction = 'down'
+            }
+        }
 
     }
 }
@@ -112,6 +128,20 @@ window.onkeyup = function (e) {
         return
 
     }
+    // if (santa.direction == 'up') {
+    //     santa.img.src = 'santaIdleUp.png'
+    //     santa.frames = 16
+
+    //     return
+
+    // }
+    // if (santa.direction == 'down') {
+    //     santa.img.src = 'santaIdleDown.png'
+    //     santa.frames = 16
+
+    //     return
+
+    // }
 
 }
 
