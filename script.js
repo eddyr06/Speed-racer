@@ -15,6 +15,7 @@ heroImg.src = `../Images/Hero/runningDown.png`
 heroImg.onload = () => { }
 
 const enemyImg = new Image()
+enemyImg.src = `../Images/Enemy/penguinIdleRedLight.png`
 enemyImg.src = `../Images/Enemy/penguinRotation.png`
 enemyImg.src = `../Images/Enemy/enemyIdle.png`
 enemyImg.onload = () => { }
@@ -68,6 +69,8 @@ function addRock() {
 }
 let completeLoop = true
 let levelCounter = 0
+let gameOver = false
+let zeroCounter = 0
 
 //Game Engine 
 function animate() {
@@ -122,10 +125,22 @@ function animate() {
         enemy.w, //width
         enemy.h//height
     )
-
+    
+    if (gameOver === true){
+        console.log('game over animation activated')
+        enemy.img.src = '../Images/Enemy/penguinIdleRedLight.png'
+        esx = 0
+        if (zeroCounter % 70 === 0 && zeroCounter <= 420){
+            esx += (enemy.img.width / 7)
+        }
+        zeroCounter++
+        if (zeroCounter === 420){
+            
+        }
+    }
     // console.log(keys)
     moveHero()
-    if (counter % 50 === 0 && completeLoop === true) {
+    if (counter % 50 === 0 && completeLoop === true ) {
         console.log ('if loop 1 begins')
         if (Math.floor(Math.random() * 10) === 4) {
             completeLoop = false
@@ -133,19 +148,23 @@ function animate() {
             console.log('if loop 2 begins')
 
 
-            setTimeout(frame, 2000)
+            var frameint = setTimeout(frame, 1000)
             function frame(){
                 console.log('interval 1 begins')
                 esx += (enemy.img.width / 5)
                 
-                setInterval(frame2, 6000)
+                var frame2int = setInterval(frame2, 1000)
                 function frame2(){
                     console.log('interval 2 begins')
                     esx += (enemy.img.width / 5)
-                    setInterval(frame3, 9000)
+                    var frame3int = setInterval(frame3, 500)
                         for (let key in keys){
                            if (keys[key] == true){
                                console.log('You lose!')
+                                gameOver = true
+                               clearInterval(frameint)
+                               clearInterval(frame2int)
+                               clearInterval(frame3int)
                            }
                            else (console.log('continue'))
                         }
