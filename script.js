@@ -64,6 +64,15 @@ function init() {
     let rockArr = []
     let id = 0
 
+    //Safe Zone
+    let safeZone = {
+        x: 0,
+        y: 0,
+        w: 0,
+        h: 0
+    };
+
+
     function addRock() {
         for (let i = levelCounter; levelCounter >= 0; i++) {
             rockArr.push(new Rock(id++))
@@ -137,63 +146,67 @@ function init() {
             zeroCounter++
             if (zeroCounter === 280) {
                 gameOver = 'complete'
+                // alert('Game Over')
             }
+            // window.location.reload()
         }
-        // console.log(keys)
+        detectCollision(hero, enemy)
         moveHero()
         movementCheck()
     }
 
     animate()
 
-function movementCheck(){
-    // console.log('movement check called',counter,completeLoop,gameOver)
-    if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
-        console.log ('loop 1')
-        if (Math.floor(Math.random() * 10) === 4) {
-            completeLoop = false
-            enemy.img.src = `../Images/Enemy/penguinRotation.png`
-            console.log('loop 2')
-            var frameint = setInterval(frame, 5)
-            function frame(){
-            if (counter % 500 === 0 && rotationCount < 2){
-                console.log('if loop running ever 500 counts and increasing frame count')
-                esx += (enemy.img.width / 5)
-                rotationCount++
-            }
-                else if (rotationCount >= 2 && completeLoop === false){
-                    completeLoop = 'almost'
-                    var moveCheck = setTimeout(frameMove, 1)
-                    function frameMove(){
-                        console.log('timer activated')
-                    var frameCheck = setInterval(frameCheckF, 1)
-                    function frameCheckF(){
-                        console.log('frame 1 running ever 5 milliseconds')
-                        for (let key in keys){
-                            if (keys[key] == true){
-                            console.log('You lose!')
-                            gameOver = true
-                            esx = 0
+    function movementCheck() {
+        // console.log('movement check called',counter,completeLoop,gameOver)
+        if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
+            console.log('loop 1')
+            if (Math.floor(Math.random() * 10) === 4) {
+                completeLoop = false
+                enemy.img.src = `../Images/Enemy/penguinRotation.png`
+                console.log('loop 2')
+                var frameint = setInterval(frame, 5)
+                function frame() {
+                    if (counter % 500 === 0 && rotationCount < 2) {
+                        console.log('if loop running ever 500 counts and increasing frame count')
+                        esx += (enemy.img.width / 5)
+                        rotationCount++
                     }
-                }
-                }
-                
-                setTimeout(frameEnd, 5000)
-                function frameEnd(){
-                console.log('clearingTimeout')
-                
-                completeLoop = true
-                clearTimeout(moveCheck)
-                clearInterval(frameCheck)
-                clearInterval(frameint)
-                }
-            }
+                    else if (rotationCount >= 2 && completeLoop === false) {
+                        completeLoop = 'almost'
+                        var moveCheck = setTimeout(frameMove, 1)
+                        function frameMove() {
+                            console.log('timer activated')
+                            var frameCheck = setInterval(frameCheckF, 1)
+                            function frameCheckF() {
+                                console.log('frame 1 running ever 5 milliseconds')
+                                for (let key in keys) {
+                                    if (keys[key] == true) {
+                                        console.log('You lose!')
+                                        // alert('Game Over')
+                                        // window.location.reload()
+                                        gameOver = true
+                                        esx = 0
+                                    }
+                                }
+                            }
+
+                            setTimeout(frameEnd, 5000)
+                            function frameEnd() {
+                                console.log('clearingTimeout')
+
+                                completeLoop = true
+                                clearTimeout(moveCheck)
+                                clearInterval(frameCheck)
+                                clearInterval(frameint)
+                            }
                         }
                     }
-                }   
                 }
-}
-function moveHero() {
+            }
+        }
+    }
+    function moveHero() {
 
         for (let key in keys) {
             if (key === "ArrowLeft") {
@@ -268,50 +281,67 @@ function moveHero() {
         keys[e.key] = true;
     };
 
-
-    //Timer
-    var isWaiting = false;
-    var isRunning = false;
-    var seconds = 180;
-    var countdownTimer;
-    var finalCountdown = false;
-
-    function GameTimer() {
-        var minutes = Math.round((seconds - 30) / 60);
-        var remainingSeconds = seconds % 60;
-        if (remainingSeconds < 10) {
-            remainingSeconds = "0" + remainingSeconds;
+    function detectCollision(rect1, rect2) {
+        if (rect1.x < rect2.x + rect2.w &&
+            rect1.x + rect1.w > rect2.x &&
+            rect1.y < rect2.y + rect2.h &&
+            rect1.h + rect1.y > rect2.y) {
+            alert('collision')
+            window.cancelAnimationFrame(int)
+            // window.location.reload()
         }
-        document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
-        if (seconds == 0) {
-            isRunning = true;
 
-            if (finalCountdown) {
-                clearInterval(countdownTimer);
-            } else {
-                finalCountdown = true;
-                alert('Game Over')
-                window.location.reload()
+
+
+
+
+
+
+
+        //Timer
+        var isWaiting = false;
+        var isRunning = false;
+        var seconds = 180;
+        var countdownTimer;
+        var finalCountdown = false;
+
+        function GameTimer() {
+            var minutes = Math.round((seconds - 30) / 60);
+            var remainingSeconds = seconds % 60;
+            if (remainingSeconds < 10) {
+                remainingSeconds = "0" + remainingSeconds;
             }
+            document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
+            if (seconds == 0) {
+                isRunning = true;
 
-        } else {
-            isWaiting = true;
-            seconds--;
+                if (finalCountdown) {
+                    clearInterval(countdownTimer);
+                } else {
+                    finalCountdown = true;
+                    alert('Game Over')
+                    window.location.reload()
+                }
+
+            } else {
+                isWaiting = true;
+                seconds--;
+            }
         }
-    }
-    countdownTimer = setInterval(GameTimer, 1000);
+        countdownTimer = setInterval(GameTimer, 1000);
 
 
-    //New Game Button
-    document.querySelector('#btn').addEventListener('click', function () {
-        window.location.reload();
-        return false;
+        //New Game Button
+        document.querySelector('#btn').addEventListener('click', function () {
+            window.location.reload();
+            return false;
+        })
+    };
+
+
+    document.querySelector(".menu").click(function () {
+        $(this).parent().toggleClass("close");
     })
 };
-
-
-document.querySelector(".menu").click(function () {
-    $(this).parent().toggleClass("close");
-});
 
 
