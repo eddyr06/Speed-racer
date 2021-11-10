@@ -69,25 +69,11 @@ function init() {
             rockArr.push(new Rock(id++))
         }
     }
-<<<<<<< HEAD
     let completeLoop = true
     let levelCounter = 0
     let gameOver = false
     let zeroCounter = 0
-=======
-}
-let completeLoop = true
-let levelCounter = 0
-let gameOver = false
-let zeroCounter = 0
-let rotationCount = 0
-
-//Game Engine 
-function animate() {
-    //This causes the loop
-    window.requestAnimationFrame(animate)
->>>>>>> 64b482ef6270cbcb698c8fbe75ce497dc6bce05f
-
+    let rotationCount = 0
     //Game Engine 
     function animate() {
         //This causes the loop
@@ -109,7 +95,6 @@ function animate() {
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
-<<<<<<< HEAD
 
         //Resets sprite so it goes backs to beginning when reaches end.
         //It it controls the speed of how fast its going through the sheet
@@ -156,68 +141,10 @@ function animate() {
         }
         // console.log(keys)
         moveHero()
-        if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
-            console.log('if loop 1 begins')
-            if (Math.floor(Math.random() * 10) === 4) {
-                completeLoop = false
-                enemy.img.src = `../Images/Enemy/penguinRotation.png`
-                console.log('if loop 2 begins')
-
-
-                var frameint = setTimeout(frame, 1000)
-                function frame() {
-                    console.log('interval 1 begins')
-
-                    var frame2int = setInterval(frame2, 1000)
-                    function frame2() {
-                        console.log('interval 2 begins')
-                        esx += (enemy.img.width / 5)
-
-
-                        var frame3int = setInterval(frame3, 5)
-                        function frame3() {
-                            for (let key in keys) {
-                                if (keys[key] == true) {
-                                    console.log('You lose!')
-                                    gameOver = true
-                                    esx = 0
-                                    clearInterval(frame3int)
-                                    clearInterval(frame2int)
-                                    clearInterval(frameint)
-                                    break
-                                }
-                                else (console.log('continue'))
-                            }
-
-                            var frame4int = setInterval(frame4, 4000)
-                            function frame4() {
-                                console.log('frame4 function activated')
-                                clearInterval(frame4int)
-                                clearInterval(frame3int)
-                                clearInterval(frame2int)
-                                clearInterval(frameint)
-                                completeLoop = true
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
+        movementCheck()
     }
 
     animate()
-
-
-    function moveHero() {
-=======
-    }
-    // console.log(keys)
-    moveHero()
-    movementCheck()
-            }
-
-animate()
 
 function movementCheck(){
     if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
@@ -266,7 +193,6 @@ function movementCheck(){
                 }
 }
 function moveHero() {
->>>>>>> 64b482ef6270cbcb698c8fbe75ce497dc6bce05f
 
         for (let key in keys) {
             if (key === "ArrowLeft") {
