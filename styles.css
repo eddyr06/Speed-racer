@@ -84,8 +84,8 @@ a {
    height: 40px;
    margin-left: -40px;
    position: absolute;
-   top: -400px;
-   left: -387px;
+   /* top: -400px; */
+   /* left: -387px; */
    color: #FFFFFF;
    text-align: center;
    line-height: 80px;
@@ -151,10 +151,10 @@ a {
 .menu {
    margin: auto;
    position: absolute;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   right: 0;
+   top: 20px;
+   /* bottom: 0; */
+   left: 20px;
+   /* right: 0; */
    width: 80px;
    height: 80px;
    text-align: center;

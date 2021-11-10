@@ -44,7 +44,7 @@ function init() {
 
     let enemy = {
         x: 600,
-        y: 0,
+        y: 30,
         w: (enemyImg.width / 5) * .5,
         h: 200 * .5,
         frames: 5,
@@ -66,8 +66,8 @@ function init() {
     let safeZone = {
         x: 0,
         y: 0,
-        w: 0,
-        h: 0
+        w: 1000,
+        h: 100
     }
 
 
@@ -82,10 +82,13 @@ function init() {
     let gameOver = false
     let zeroCounter = 0
     let rotationCount = 0
+    let int;
+    let finalInt;
+
     //Game Engine 
     function animate() {
         //This causes the loop
-        window.requestAnimationFrame(animate)
+        int = window.requestAnimationFrame(animate)
 
         // console.log('loop')
 
@@ -154,7 +157,7 @@ function init() {
             }
             // window.location.reload()
         }
-        detectCollision(hero, enemy)
+        detectCollision(hero, safeZone)
         moveHero()
         movementCheck()
     }
@@ -172,7 +175,7 @@ function init() {
                 var frameint = setInterval(frame, 5)
                 function frame() {
                     if (counter % 500 === 0 && rotationCount < 2) {
-                        console.log('if loop running ever 500 counts and increasing frame count')
+                        // console.log('if loop running ever 500 counts and increasing frame count')
                         esx += (enemy.img.width / 5)
                         rotationCount++
                     }
@@ -186,7 +189,9 @@ function init() {
                                 console.log('frame 1 running ever 5 milliseconds')
                                 for (let key in keys) {
                                     if (keys[key] == true) {
-                                        console.log('You lose!')
+                                        alert('You lose!')
+                                        keys = {};
+                                        window.cancelAnimationFrame(int)
                                         gameOver = true
                                         esx = 0
                                         clearInterval(frameCheck)
@@ -195,7 +200,7 @@ function init() {
                                         clearTimeout(finalInt)
                                     }
                                     else {
-                                        let finalInt = setTimeout(frameEnd, 5000)
+                                        finalInt = setTimeout(frameEnd, 5000)
                                         function frameEnd() {
                                             console.log('clearingTimeout')
                                             esx = 0
@@ -300,13 +305,14 @@ function init() {
         keys[e.key] = true;
     };
 
+
     function detectCollision(rect1, rect2) {
         if (rect1.x < rect2.x + rect2.w &&
             rect1.x + rect1.w > rect2.x &&
             rect1.y < rect2.y + rect2.h &&
             rect1.h + rect1.y > rect2.y) {
-            alert('collision')
-            window.cancelAnimationFrame(int)
+            console.log('collision')
+            // window.cancelAnimationFrame(int)
             // window.location.reload()
         }
     }
