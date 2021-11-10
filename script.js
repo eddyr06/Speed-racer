@@ -52,28 +52,24 @@ function init() {
     }
 
     let rock = {
-            x: 0,
-            y: 0,
-            w: rockImg.width,
-            h: rockImg.height,
-            img: rockImg
-        }
+        x: 0,
+        y: 0,
+        w: rockImg.width,
+        h: rockImg.height,
+        img: rockImg
+    }
 
     let rockArr = []
     let id = 0
 
-<<<<<<< HEAD
-    let levelCounter = 1
-=======
     //Safe Zone
     let safeZone = {
         x: 0,
         y: 0,
         w: 0,
         h: 0
-    };
+    }
 
->>>>>>> d1c75e21087cc79b0b33f79e635669dc82b2ea37
 
     function addRock() {
         for (let i = levelCounter; levelCounter >= 0; i++) {
@@ -105,13 +101,13 @@ function init() {
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
-        for (let rock of rockArr){
-            ctx.drawImage(rock, bonuspoint.x, bonuspoint.y +=4, bonuspoint.w, bonuspoint.h)
-            detectBonus(vehicle,bonuspoint)
-            if (detectBonus(vehicle,bonuspoint) === true){
-              bonuspoint.y+=1000
+        for (let rock of rockArr) {
+            ctx.drawImage(rock, bonuspoint.x, bonuspoint.y += 4, bonuspoint.w, bonuspoint.h)
+            detectBonus(vehicle, bonuspoint)
+            if (detectBonus(vehicle, bonuspoint) === true) {
+                bonuspoint.y += 1000
             }
-          }
+        }
         //Resets sprite so it goes backs to beginning when reaches end.
         //It it controls the speed of how fast its going through the sheet
         // if (counter % 150 === 0) {
@@ -164,56 +160,6 @@ function init() {
 
     animate()
 
-<<<<<<< HEAD
-function movementCheck(){
-    // console.log('movement check called',counter,completeLoop,gameOver)
-    if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
-        console.log ('loop 1')
-        if (Math.floor(Math.random() * 10) === 4) {
-            completeLoop = false
-            enemy.img.src = `../Images/Enemy/penguinRotation.png`
-            console.log('loop 2')
-            var frameint = setInterval(frame, 5)
-            function frame(){
-            if (counter % 500 === 0 && rotationCount < 2){
-                console.log('if loop running ever 500 counts and increasing frame count')
-                esx += (enemy.img.width / 5)
-                rotationCount++
-            }
-                else if (rotationCount >= 2 && completeLoop === false){
-                    completeLoop = 'almost'
-                    var moveCheck = setTimeout(frameMove, 1)
-                    function frameMove(){
-                        console.log('timer activated')
-                    var frameCheck = setInterval(frameCheckF, 1)
-                    function frameCheckF(){
-                        console.log('frame 1 running ever 5 milliseconds')
-                        for (let key in keys){
-                            if (keys[key] == true){
-                            console.log('You lose!')
-                            gameOver = true
-                            esx = 0
-                            clearInterval(frameCheck)
-                            clearInterval(frameint)
-                            clearTimeout(moveCheck)
-                            clearTimeout(finalInt)
-                            }
-                            else {
-                                let finalInt = setTimeout(frameEnd, 5000)
-                                function frameEnd(){
-                                console.log('clearingTimeout')
-                                esx = 0
-                                rotationCount = 0
-                                completeLoop = true
-                                clearTimeout(moveCheck)
-                                clearInterval(frameCheck)
-                                clearInterval(frameint)
-                                }
-                    }
-                }
-                }
-            }
-=======
     function movementCheck() {
         // console.log('movement check called',counter,completeLoop,gameOver)
         if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
@@ -240,30 +186,34 @@ function movementCheck(){
                                 for (let key in keys) {
                                     if (keys[key] == true) {
                                         console.log('You lose!')
-                                        // alert('Game Over')
-                                        // window.location.reload()
                                         gameOver = true
                                         esx = 0
+                                        clearInterval(frameCheck)
+                                        clearInterval(frameint)
+                                        clearTimeout(moveCheck)
+                                        clearTimeout(finalInt)
+                                    }
+                                    else {
+                                        let finalInt = setTimeout(frameEnd, 5000)
+                                        function frameEnd() {
+                                            console.log('clearingTimeout')
+                                            esx = 0
+                                            rotationCount = 0
+                                            completeLoop = true
+                                            clearTimeout(moveCheck)
+                                            clearInterval(frameCheck)
+                                            clearInterval(frameint)
+                                        }
                                     }
                                 }
                             }
-
-                            setTimeout(frameEnd, 5000)
-                            function frameEnd() {
-                                console.log('clearingTimeout')
-
-                                completeLoop = true
-                                clearTimeout(moveCheck)
-                                clearInterval(frameCheck)
-                                clearInterval(frameint)
-                            }
->>>>>>> d1c75e21087cc79b0b33f79e635669dc82b2ea37
                         }
                     }
                 }
             }
         }
     }
+
     function moveHero() {
 
         for (let key in keys) {
