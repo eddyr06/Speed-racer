@@ -147,6 +147,7 @@ function init() {
     animate()
 
 function movementCheck(){
+    // console.log('movement check called',counter,completeLoop,gameOver)
     if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
         console.log ('loop 1')
         if (Math.floor(Math.random() * 10) === 4) {
@@ -177,11 +178,11 @@ function movementCheck(){
                 }
                 }
                 
-                var endInt = setTimeout(frameEnd, 5000)
+                setTimeout(frameEnd, 5000)
                 function frameEnd(){
                 console.log('clearingTimeout')
                 
-                completeLoop === true
+                completeLoop = true
                 clearTimeout(moveCheck)
                 clearInterval(frameCheck)
                 clearInterval(frameint)
