@@ -7,21 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/da4f6bbe4f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <nav class="menu">
         <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
-        <label class="menu-open-button" for="menu-open">
+        <label id="wrench" class="menu-open-button" for="menu-open">
             <span class="lines line-1"></span>
             <span class="lines line-2"></span>
             <span class="lines line-3"></span>
         </label>
 
-        <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a>
-        <a href="#" class="menu-item green"> <i class="fas fa-redo"></i> </a>
-        <a href="#" class="menu-item red"> <i class="fas fa-volume-up"></i> </a>
+        <a href="#" class="menu-item blue"> <i class=""></i> </a>
+        <!-- <a href="#" class="menu-item green"> <i class="fas fa-redo"></i> </a> -->
+        <!-- <a href="#" class="menu-item red"> <i class="fas fa-volume-up"></i> </a> -->
+        <button onclick="window.location.reload()" type="button" class="menu-item green fas fa-redo"></button>
+        <button onclick="disableMute()" type="button" class="menu-item red fas fa-volume-up"></button>
         <button onclick="enableMute()" type="button" class="menu-item purple fas fa-volume-mute"></button>
         <!-- <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a> -->
         <!-- <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
@@ -35,11 +36,6 @@
     <section id="infobar">
         <div id="info">
             <div id="score">
-                <!-- <div>
-                    <h3>Score:<br>
-                        <span id="scoreTotal">0</span>
-                    </h3>
-                </div> -->
                 <div>
                     <h3>Level:<br>
                         <span id="levelTotal">0</span>
@@ -59,7 +55,8 @@
     <section id="timer">
     </section>
 
-    <audio id="myAudio" controls autoplay>
+    <audio id="myAudio" controls>
+        <!-- <audio id="myAudio" controls autoplay> -->
         <source src="squidTheme.mp3" type="audio/mp3">
     </audio>
 
@@ -82,7 +79,7 @@
 
 </body>
 
-<script type="text/javascript" src="script.js">
-</script>
+<script src="https://kit.fontawesome.com/da4f6bbe4f.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="script.js"></script>
 
 </html>
