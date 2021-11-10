@@ -44,7 +44,6 @@ let enemy = {
     y: 0,
     w: (enemyImg.width / 5) * .5,
     h: 200 * .5,
-    direction: 'right',
     frames: 5,
     img: enemyImg
 }
@@ -67,7 +66,7 @@ function addRock() {
         rockArr.push(new Rock(id++))
     }
 }
-
+let completeLoop = true
 let levelCounter = 0
 
 //Game Engine 
@@ -89,7 +88,7 @@ function animate() {
     }
     //It it controls the speed of how fast its going through the sheet
     if (counter % 5 === 0) {
-        sx += hero.img.width / hero.frames
+        sx += (hero.img.width / hero.frames)
     }
 
     //Resets sprite so it goes backs to beginning when reaches end.
@@ -126,26 +125,37 @@ function animate() {
 
     // console.log(keys)
     moveHero()
-    let completeLoop = true
-    if (counter % 100 === 0 && completeLoop === true) {
+    if (counter % 50 === 0 && completeLoop === true) {
+        console.log ('if loop 1 begins')
         if (Math.floor(Math.random() * 10) === 4) {
             completeLoop = false
-            enemy.img = `../Images/Enemy/enemyIdle.png`
-            setInterval(frame, 2000)
+            enemy.img.src = `../Images/Enemy/penguinRotation.png`
+            console.log('if loop 2 begins')
+
+
+            setTimeout(frame, 2000)
             function frame(){
-                enemy.img = `../Images/Enemy/enemyIdle.png`
-                // esx = (enemy.img.width - enemy.img.width / 2)
-                setInterval(frame2, 4000)
+                console.log('interval 1 begins')
+                esx += (enemy.img.width / 5)
+                
+                setInterval(frame2, 6000)
                 function frame2(){
-                    enemy.img = `../Images/Enemy/enemyIdle.png`
-                    // esx = (enemy.img.width - enemy.img.width / 3)
+                    console.log('interval 2 begins')
+                    esx += (enemy.img.width / 5)
                     setInterval(frame3, 9000)
+                        for (let key in keys){
+                           if (keys[key] == true){
+                               console.log('You lose!')
+                           }
+                           else (console.log('continue'))
+                        }
+                        }
+                    }
+                    function frame3(){
+                    }
+                }
                 }
             }
-    }
-
-}
-}
 
 animate()
 
