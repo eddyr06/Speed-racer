@@ -271,7 +271,7 @@ function moveHero() {
     //Timer
     var isWaiting = false;
     var isRunning = false;
-    var seconds = 300;
+    var seconds = 180;
     var countdownTimer;
     var finalCountdown = false;
 
@@ -309,22 +309,8 @@ function moveHero() {
 };
 
 
-$(".menu").click(function () {
+document.querySelector(".menu").click(function () {
     $(this).parent().toggleClass("close");
 });
 
 
-//Audio control
-var x = document.querySelector("#myAudio");
-
-function enableMute() {
-    x.muted = true;
-}
-
-function disableMute() {
-    x.muted = false;
-}
-
-function checkMute() {
-    alert(x.muted);
-}
