@@ -125,7 +125,7 @@ function animate() {
 
     // console.log(keys)
     moveHero()
-    if (counter % 100 === 0 && completeLoop === true) {
+    if (counter % 50 === 0 && completeLoop === true) {
         console.log ('if loop 1 begins')
         if (Math.floor(Math.random() * 10) === 4) {
             completeLoop = false
@@ -143,14 +143,19 @@ function animate() {
                     console.log('interval 2 begins')
                     esx += (enemy.img.width / 5)
                     setInterval(frame3, 9000)
+                        for (let key in keys){
+                           if (keys[key] == true){
+                               console.log('You lose!')
+                           }
+                           else (console.log('continue'))
+                        }
+                        }
+                    }
                     function frame3(){
                     }
                 }
                 }
             }
-    }
-
-}
 
 animate()
 
