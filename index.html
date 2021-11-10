@@ -7,23 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/da4f6bbe4f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- <iframe src="https://www.youtube.com/embed/MCkTebktHVc" /> -->
-    <audio controls autoplay>
-        <!-- <source src="squidTheme.mp3" type="audio/mp3"> -->
-    </audio>
-    <canvas></canvas>
+    <nav class="menu">
+        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+        <label class="menu-open-button" for="menu-open">
+            <span class="lines line-1"></span>
+            <span class="lines line-2"></span>
+            <span class="lines line-3"></span>
+        </label>
+
+        <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a>
+        <a href="#" class="menu-item green"> <i class="fas fa-redo"></i> </a>
+        <a href="#" class="menu-item red"> <i class="fas fa-volume-up"></i> </a>
+        <button onclick="enableMute()" type="button" class="menu-item purple fas fa-volume-mute"></button>
+        <!-- <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a> -->
+        <!-- <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
+    </nav>
+
+    <h1>Penguin Games</h1>
+    <section id="game">
+        <canvas></canvas>
+    </section>
 
     <section id="infobar">
         <div id="info">
             <div id="score">
-                <div>
+                <!-- <div>
                     <h3>Score:<br>
                         <span id="scoreTotal">0</span>
                     </h3>
-                </div>
+                </div> -->
                 <div>
                     <h3>Level:<br>
                         <span id="levelTotal">0</span>
@@ -36,14 +52,37 @@
         <div id="waiting_time" class="timer"></div>
 
         <div id="newGame">
-            <button id="btn">New Game</button>
+            <button id="btn" onclick="init()">New Game</button>
         </div>
     </section>
 
     <section id="timer">
     </section>
+
+    <audio id="myAudio" controls autoplay>
+        <source src="squidTheme.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Audio control -->
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function enableMute() {
+            x.muted = true;
+        }
+
+        function disableMute() {
+            x.muted = false;
+        }
+
+        function checkMute() {
+            alert(x.muted);
+        }
+    </script>
+
 </body>
 
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="script.js">
+</script>
 
 </html>
