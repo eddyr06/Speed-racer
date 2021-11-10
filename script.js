@@ -51,18 +51,18 @@ function init() {
         img: enemyImg
     }
 
-    class Rock {
-        constructor(id) {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.w = rockImg.width;
-            this.h = rockImg.height;
-            this.img = rockImg
+    let rock = {
+            x: 0,
+            y: 0,
+            w: rockImg.width,
+            h: rockImg.height,
+            img: rockImg
         }
-    }
 
     let rockArr = []
     let id = 0
+
+    let levelCounter = 1
 
     function addRock() {
         for (let i = levelCounter; levelCounter >= 0; i++) {
@@ -71,7 +71,6 @@ function init() {
     }
 
     let completeLoop = true
-    let levelCounter = 1
     let gameOver = false
     let zeroCounter = 0
     let rotationCount = 0
@@ -87,7 +86,6 @@ function init() {
 
         //Clears the canvas ... Flips the page
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-
         //Resets sprite so it goes backs to beginning when reaches end. 
         if (sx >= (hero.img.width - hero.img.width / hero.frames)) {
             sx = 0
@@ -96,7 +94,13 @@ function init() {
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
-
+        for (let rock of rockArr){
+            ctx.drawImage(rock, bonuspoint.x, bonuspoint.y +=4, bonuspoint.w, bonuspoint.h)
+            detectBonus(vehicle,bonuspoint)
+            if (detectBonus(vehicle,bonuspoint) === true){
+              bonuspoint.y+=1000
+            }
+          }
         //Resets sprite so it goes backs to beginning when reaches end.
         //It it controls the speed of how fast its going through the sheet
         // if (counter % 150 === 0) {
