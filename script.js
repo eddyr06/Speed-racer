@@ -131,25 +131,25 @@ function animate() {
             completeLoop = false
             enemy.img.src = `../Images/Enemy/penguinRotation.png`
             console.log('if loop 2 begins')
-            setInterval(frame, 2000)
+
+
+            setTimeout(frame, 2000)
             function frame(){
                 console.log('interval 1 begins')
-                // enemy.img = `../Images/Enemy/penguinRotation.png`
-                // esx = (enemy.img.width - enemy.img.width / 2)
-                setInterval(frame2, 4000)
+                esx += (enemy.img.width / 5)
+                
+                setInterval(frame2, 6000)
                 function frame2(){
                     console.log('interval 2 begins')
-                    // enemy.img = `../Images/Enemy/enemyIdle.png`
-                    // esx = (enemy.img.width - enemy.img.width / 3)
+                    esx += (enemy.img.width / 5)
                     setInterval(frame3, 9000)
                     function frame3(){
-                        // enemy.img = `../Images/Enemy/enemyIdle.png`
                     }
+                }
                 }
             }
     }
 
-}
 }
 
 animate()
