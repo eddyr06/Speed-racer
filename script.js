@@ -130,16 +130,19 @@ function animate() {
     if (counter % 100 === 0 && completeLoop === true) {
         if (Math.floor(Math.random() * 10) === 4) {
             completeLoop = false
-            enemy.img = `../Images/Enemy/enemyIdle.png`
+            enemy.img = `../Images/Enemy/penguinRotation.png`
             setInterval(frame, 2000)
             function frame(){
-                enemy.img = `../Images/Enemy/enemyIdle.png`
+                enemy.img = `../Images/Enemy/penguinRotation.png`
                 // esx = (enemy.img.width - enemy.img.width / 2)
                 setInterval(frame2, 4000)
                 function frame2(){
                     enemy.img = `../Images/Enemy/enemyIdle.png`
                     // esx = (enemy.img.width - enemy.img.width / 3)
                     setInterval(frame3, 9000)
+                    function frame3(){
+                        enemy.img = `../Images/Enemy/enemyIdle.png`
+                    }
                 }
             }
     }
