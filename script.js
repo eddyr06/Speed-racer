@@ -71,6 +71,7 @@ let completeLoop = true
 let levelCounter = 0
 let gameOver = false
 let zeroCounter = 0
+let rotationCount = 0
 
 //Game Engine 
 function animate() {
@@ -139,59 +140,57 @@ function animate() {
     }
     // console.log(keys)
     moveHero()
-    if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
-        console.log ('if loop 1 begins')
-        if (Math.floor(Math.random() * 10) === 4) {
-            completeLoop = false
-            enemy.img.src = `../Images/Enemy/penguinRotation.png`
-            console.log('if loop 2 begins')
-
-
-            var frameint = setTimeout(frame, 1000)
-            function frame(){
-                console.log('interval 1 begins')
-                
-                var frame2int = setInterval(frame2, 1000)
-                function frame2(){
-                    console.log('interval 2 begins')
-                    esx += (enemy.img.width / 5)
-
-
-                    var frame3int = setInterval(frame3, 5)
-                    function frame3(){
-                        for (let key in keys){
-                           if (keys[key] == true){
-                               console.log('You lose!')
-                                gameOver = true
-                                esx = 0
-                               clearInterval(frame3int)
-                               clearInterval(frame2int)
-                               clearInterval(frameint)
-                               break
-                           }    
-                           else (console.log('continue'))
-                        }
-
-                           var frame4int = setInterval(frame4, 4000)
-                           function frame4(){
-                               console.log('frame4 function activated')
-                            clearInterval(frame4int)
-                            clearInterval(frame3int)
-                            clearInterval(frame2int)
-                            clearInterval(frameint)
-                            completeLoop = true
-                           }
-
-                        }
-                        }
-                    }
-                }
-                }
+    movementCheck()
             }
 
 animate()
 
-
+function movementCheck(){
+    if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
+        console.log ('loop 1')
+        if (Math.floor(Math.random() * 10) === 4) {
+            completeLoop = false
+            enemy.img.src = `../Images/Enemy/penguinRotation.png`
+            console.log('loop 2')
+            var frameint = setInterval(frame, 5)
+            function frame(){
+            if (counter % 500 === 0 && rotationCount < 2){
+                console.log('if loop running ever 500 counts and increasing frame count')
+                esx += (enemy.img.width / 5)
+                rotationCount++
+            }
+                else if (rotationCount >= 2 && completeLoop === false){
+                    completeLoop = 'almost'
+                    var moveCheck = setTimeout(frameMove, 1)
+                    function frameMove(){
+                        console.log('timer activated')
+                    var frameCheck = setInterval(frameCheckF, 1)
+                    function frameCheckF(){
+                        console.log('frame 1 running ever 5 milliseconds')
+                        for (let key in keys){
+                            if (keys[key] == true){
+                            console.log('You lose!')
+                            gameOver = true
+                            esx = 0
+                    }
+                }
+                }
+                
+                var endInt = setTimeout(frameEnd, 5000)
+                function frameEnd(){
+                console.log('clearingTimeout')
+                
+                completeLoop === true
+                clearTimeout(moveCheck)
+                clearInterval(frameCheck)
+                clearInterval(frameint)
+                }
+            }
+                        }
+                    }
+                }   
+                }
+}
 function moveHero() {
 
     for (let key in keys) {
