@@ -57,7 +57,7 @@ function init() {
             this.y = Math.random() * canvas.height;
             this.w = rockImg.width;
             this.h = rockImg.height;
-            this.img = rock.Img
+            this.img = rockImg
         }
     }
 
@@ -69,8 +69,9 @@ function init() {
             rockArr.push(new Rock(id++))
         }
     }
+
     let completeLoop = true
-    let levelCounter = 0
+    let levelCounter = 1
     let gameOver = false
     let zeroCounter = 0
     let rotationCount = 0
@@ -174,18 +175,24 @@ function movementCheck(){
                             console.log('You lose!')
                             gameOver = true
                             esx = 0
+                            clearInterval(frameCheck)
+                            clearInterval(frameint)
+                            clearTimeout(moveCheck)
+                            clearTimeout(finalInt)
+                            }
+                            else {
+                                let finalInt = setTimeout(frameEnd, 5000)
+                                function frameEnd(){
+                                console.log('clearingTimeout')
+                                esx = 0
+                                rotationCount = 0
+                                completeLoop = true
+                                clearTimeout(moveCheck)
+                                clearInterval(frameCheck)
+                                clearInterval(frameint)
+                                }
                     }
                 }
-                }
-                
-                setTimeout(frameEnd, 5000)
-                function frameEnd(){
-                console.log('clearingTimeout')
-                
-                completeLoop = true
-                clearTimeout(moveCheck)
-                clearInterval(frameCheck)
-                clearInterval(frameint)
                 }
             }
                         }
