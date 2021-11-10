@@ -69,10 +69,24 @@ function init() {
             rockArr.push(new Rock(id++))
         }
     }
+<<<<<<< HEAD
     let completeLoop = true
     let levelCounter = 0
     let gameOver = false
     let zeroCounter = 0
+=======
+}
+let completeLoop = true
+let levelCounter = 0
+let gameOver = false
+let zeroCounter = 0
+let rotationCount = 0
+
+//Game Engine 
+function animate() {
+    //This causes the loop
+    window.requestAnimationFrame(animate)
+>>>>>>> 64b482ef6270cbcb698c8fbe75ce497dc6bce05f
 
     //Game Engine 
     function animate() {
@@ -95,6 +109,7 @@ function init() {
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
+<<<<<<< HEAD
 
         //Resets sprite so it goes backs to beginning when reaches end.
         //It it controls the speed of how fast its going through the sheet
@@ -195,6 +210,63 @@ function init() {
 
 
     function moveHero() {
+=======
+    }
+    // console.log(keys)
+    moveHero()
+    movementCheck()
+            }
+
+animate()
+
+function movementCheck(){
+    if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
+        console.log ('loop 1')
+        if (Math.floor(Math.random() * 10) === 4) {
+            completeLoop = false
+            enemy.img.src = `../Images/Enemy/penguinRotation.png`
+            console.log('loop 2')
+            var frameint = setInterval(frame, 5)
+            function frame(){
+            if (counter % 500 === 0 && rotationCount < 2){
+                console.log('if loop running ever 500 counts and increasing frame count')
+                esx += (enemy.img.width / 5)
+                rotationCount++
+            }
+                else if (rotationCount >= 2 && completeLoop === false){
+                    completeLoop = 'almost'
+                    var moveCheck = setTimeout(frameMove, 1)
+                    function frameMove(){
+                        console.log('timer activated')
+                    var frameCheck = setInterval(frameCheckF, 1)
+                    function frameCheckF(){
+                        console.log('frame 1 running ever 5 milliseconds')
+                        for (let key in keys){
+                            if (keys[key] == true){
+                            console.log('You lose!')
+                            gameOver = true
+                            esx = 0
+                    }
+                }
+                }
+                
+                var endInt = setTimeout(frameEnd, 5000)
+                function frameEnd(){
+                console.log('clearingTimeout')
+                
+                completeLoop === true
+                clearTimeout(moveCheck)
+                clearInterval(frameCheck)
+                clearInterval(frameint)
+                }
+            }
+                        }
+                    }
+                }   
+                }
+}
+function moveHero() {
+>>>>>>> 64b482ef6270cbcb698c8fbe75ce497dc6bce05f
 
         for (let key in keys) {
             if (key === "ArrowLeft") {
