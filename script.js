@@ -77,6 +77,7 @@ function init() {
         }
     }
 
+    let levelCounter = 0
     let completeLoop = true
     let gameOver = false
     let zeroCounter = 0
@@ -207,6 +208,16 @@ function init() {
                                     }
                                 }
                             }
+
+                            setTimeout(frameEnd, 5000)
+                            function frameEnd() {
+                                console.log('clearingTimeout')
+
+                                completeLoop = true
+                                clearTimeout(moveCheck)
+                                clearInterval(frameCheck)
+                                clearInterval(frameint)
+                            }
                         }
                     }
                 }
@@ -298,7 +309,6 @@ function init() {
             window.cancelAnimationFrame(int)
             // window.location.reload()
         }
-    }
 
 
 
@@ -306,49 +316,51 @@ function init() {
 
 
 
-    //Timer
-    let isWaiting = false;
-    let isRunning = false;
-    let seconds = 180;
-    let countdownTimer;
-    let finalCountdown = false;
 
-    function gameTimer() {
-        let minutes = Math.round((seconds - 30) / 60);
-        let remainingSeconds = seconds % 60;
-        if (remainingSeconds < 10) {
-            remainingSeconds = "0" + remainingSeconds;
-        }
-        document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
-        if (seconds == 0) {
-            isRunning = true;
+        //Timer
+        var isWaiting = false;
+        var isRunning = false;
+        var seconds = 180;
+        var countdownTimer;
+        var finalCountdown = false;
 
-            if (finalCountdown) {
-                clearInterval(countdownTimer);
-            } else {
-                finalCountdown = true;
-                alert('Game Over')
-                window.location.reload()
+        function GameTimer() {
+            var minutes = Math.round((seconds - 30) / 60);
+            var remainingSeconds = seconds % 60;
+            if (remainingSeconds < 10) {
+                remainingSeconds = "0" + remainingSeconds;
             }
+            document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
+            if (seconds == 0) {
+                isRunning = true;
 
-        } else {
-            isWaiting = true;
-            seconds--;
+                if (finalCountdown) {
+                    clearInterval(countdownTimer);
+                } else {
+                    finalCountdown = true;
+                    alert('Game Over')
+                    window.location.reload()
+                }
+
+            } else {
+                isWaiting = true;
+                seconds--;
+            }
         }
-    }
-    countdownTimer = setInterval(gameTimer, 1000);
+        countdownTimer = setInterval(GameTimer, 1000);
 
 
-    //New Game Button
-    document.querySelector('#btn').addEventListener('click', function () {
-        window.location.reload();
-        return false;
-    })
+        //New Game Button
+        document.querySelector('#btn').addEventListener('click', function () {
+            window.location.reload();
+            return false;
+        })
+    };
 };
 
-//Hamburger Menu
+
 document.querySelector(".menu").click(function () {
     $(this).parent().toggleClass("close");
-});
+})
 
 
