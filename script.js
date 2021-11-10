@@ -293,6 +293,7 @@ function init() {
             window.cancelAnimationFrame(int)
             // window.location.reload()
         }
+    }
 
 
 
@@ -300,51 +301,49 @@ function init() {
 
 
 
+    //Timer
+    let isWaiting = false;
+    let isRunning = false;
+    let seconds = 180;
+    let countdownTimer;
+    let finalCountdown = false;
 
-        //Timer
-        var isWaiting = false;
-        var isRunning = false;
-        var seconds = 180;
-        var countdownTimer;
-        var finalCountdown = false;
-
-        function GameTimer() {
-            var minutes = Math.round((seconds - 30) / 60);
-            var remainingSeconds = seconds % 60;
-            if (remainingSeconds < 10) {
-                remainingSeconds = "0" + remainingSeconds;
-            }
-            document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
-            if (seconds == 0) {
-                isRunning = true;
-
-                if (finalCountdown) {
-                    clearInterval(countdownTimer);
-                } else {
-                    finalCountdown = true;
-                    alert('Game Over')
-                    window.location.reload()
-                }
-
-            } else {
-                isWaiting = true;
-                seconds--;
-            }
+    function gameTimer() {
+        let minutes = Math.round((seconds - 30) / 60);
+        let remainingSeconds = seconds % 60;
+        if (remainingSeconds < 10) {
+            remainingSeconds = "0" + remainingSeconds;
         }
-        countdownTimer = setInterval(GameTimer, 1000);
+        document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
+        if (seconds == 0) {
+            isRunning = true;
+
+            if (finalCountdown) {
+                clearInterval(countdownTimer);
+            } else {
+                finalCountdown = true;
+                alert('Game Over')
+                window.location.reload()
+            }
+
+        } else {
+            isWaiting = true;
+            seconds--;
+        }
+    }
+    countdownTimer = setInterval(gameTimer, 1000);
 
 
-        //New Game Button
-        document.querySelector('#btn').addEventListener('click', function () {
-            window.location.reload();
-            return false;
-        })
-    };
-
-
-    document.querySelector(".menu").click(function () {
-        $(this).parent().toggleClass("close");
+    //New Game Button
+    document.querySelector('#btn').addEventListener('click', function () {
+        window.location.reload();
+        return false;
     })
 };
+
+//Hamburger Menu
+document.querySelector(".menu").click(function () {
+    $(this).parent().toggleClass("close");
+});
 
 
