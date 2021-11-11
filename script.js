@@ -35,8 +35,8 @@ function init() {
     let hero = {
         x: 620,
         y: 650,
-        w: (1200 / 10) * .5,
-        h: 100 * .5,
+        w: (1200 / 10) * .7,
+        h: 100 * .6,
         direction: 'up',
         frames: 4,
         img: heroImg
@@ -45,8 +45,8 @@ function init() {
     let enemy = {
         x: 600,
         y: 30,
-        w: (enemyImg.width / 5) * .5,
-        h: 200 * .5,
+        w: (enemyImg.width / 5) * .7,
+        h: 200 * .6,
         frames: 5,
         img: enemyImg
     }
@@ -63,16 +63,17 @@ function init() {
 
 
     function addRock() {
-        for (let i = 0; levelCounter >= i; i++) {
+        if (levelCounter >= rockLoop) {
+            rockLoop++
             rockArr.push({
-                x: Math.floor((Math.random()*600)+50),
-                y: Math.floor((Math.random()*600)+50),
-                w: 70,
+                x: Math.floor((Math.random()*600))+50,
+                y: Math.floor((Math.random()*600))+50,
+                w: 70*1.7,
                 h: 70,
             })
         }
     }
-
+    let rockLoop = 0
     let levelCounter = 0
     let completeLoop = true
     let gameOver = false
