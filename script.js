@@ -1,17 +1,19 @@
+const coverCanvas = document.querySelector('#coverCanvas')
+coverCanvas.width = window.innerWidth
+coverCanvas.height = 700
+let coverCtx = coverCanvas.getContext('2d')
+
+
+coverCtx.fillStyle = "#D98D00";
+coverCtx.font = "14px Verdana";
+coverCtx.fillText("Instructions", 10, 20);
+coverCtx.fillText("---------------------->", 10, 40);
+
+coverCtx.fillText("Use keyboard arrows", 10, 60);
+coverCtx.fillText("Do not get caught by the evil penguin", 10, 90);
+
+
 const init = () => {
-    const coverCanvas = document.querySelector('#coverCanvas')
-    coverCanvas.width = window.innerWidth
-    coverCanvas.height = 700
-    let coverCtx = coverCanvas.getContext('2d')
-
-
-    coverCtx.fillStyle = "#D98D00";
-    coverCtx.font = "14px Verdana";
-    coverCtx.fillText("Instructions", 10, 20);
-    coverCtx.fillText("---------------------->", 10, 40);
-
-    coverCtx.fillText("Use keyboard arrows", 10, 60);
-    coverCtx.fillText("Do not get caught by the evil penguin", 10, 90);
 
     coverCanvas.parentNode.removeChild(coverCanvas)
     startGame()
@@ -26,7 +28,6 @@ const init = () => {
 
 function startGame() {
 
-
     const canvas = document.querySelector('#gameCanvas')
     canvas.width = window.innerWidth
     canvas.height = 700
@@ -35,12 +36,12 @@ function startGame() {
     const heroImg = new Image()
     heroImg.src = `../Images/Hero/idleLeft.png`
     heroImg.src = `../Images/Hero/idleRight.png`
-    heroImg.src = `../Images/Hero/idleUp.png`
     heroImg.src = `../Images/Hero/idleDown.png`
     heroImg.src = `../Images/Hero/runningLeft.png`
     heroImg.src = `../Images/Hero/runningRight.png`
     heroImg.src = `../Images/Hero/runningUp.png`
     heroImg.src = `../Images/Hero/runningDown.png`
+    heroImg.src = `../Images/Hero/idleUp.png`
     heroImg.onload = () => { }
 
     const enemyImg = new Image()
@@ -67,7 +68,7 @@ function startGame() {
         y: 650,
         w: (1200 / 10) * .7,
         h: 100 * .6,
-        direction: 'up',
+        direction: 'right',
         frames: 4,
         img: heroImg
     }
@@ -176,12 +177,11 @@ function startGame() {
             enemy.h//height
         )
 
+        //Text inside Canvas. Level and Timer
         ctx.fillStyle = "black";
         ctx.font = "20px Verdana";
-        ctx.fillText(`Time Remaning: ${timeRemaining}`, 10, 20);
+        ctx.fillText(`Time Remaining: ${timeRemaining.innerText}`, 10, 20);
         ctx.fillText(`Level: ${levelCounter}`, 10, 40);
-        ctx.fillText("Use keyboard arrows", 10, 60);
-        ctx.fillText("Take cover with the rocks", 10, 90);
 
 
         if (gameOver === true) {
@@ -397,7 +397,8 @@ function startGame() {
         if (remainingSeconds < 10) {
             remainingSeconds = "0" + remainingSeconds;
         }
-        timeRemaining.innerHTML = minutes + ":" + remainingSeconds;
+
+        timeRemaining.innerText = minutes + ":" + remainingSeconds;
 
         if (seconds == 0) {
             isRunning = true;
