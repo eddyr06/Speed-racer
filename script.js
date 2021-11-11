@@ -27,24 +27,24 @@ function startGame() {
     let ctx = canvas.getContext('2d')
 
     const heroImg = new Image()
-    heroImg.src = `../Images/Hero/idleLeft.png`
-    heroImg.src = `../Images/Hero/idleRight.png`
-    heroImg.src = `../Images/Hero/idleDown.png`
-    heroImg.src = `../Images/Hero/runningLeft.png`
-    heroImg.src = `../Images/Hero/runningRight.png`
-    heroImg.src = `../Images/Hero/runningUp.png`
-    heroImg.src = `../Images/Hero/runningDown.png`
-    heroImg.src = `../Images/Hero/idleUp.png`
+    heroImg.src = `Images/Hero/idleLeft.png`
+    heroImg.src = `Images/Hero/idleRight.png`
+    heroImg.src = `Images/Hero/idleDown.png`
+    heroImg.src = `Images/Hero/runningLeft.png`
+    heroImg.src = `Images/Hero/runningRight.png`
+    heroImg.src = `Images/Hero/runningUp.png`
+    heroImg.src = `Images/Hero/runningDown.png`
+    heroImg.src = `Images/Hero/idleUp.png`
     heroImg.onload = () => { }
 
     const enemyImg = new Image()
-    enemyImg.src = `../Images/Enemy/penguinEyeChange.png`
-    enemyImg.src = `../Images/Enemy/penguinRotation.png`
-    enemyImg.src = `../Images/Enemy/enemyIdle.png`
+    enemyImg.src = `Images/Enemy/penguinEyeChange.png`
+    enemyImg.src = `Images/Enemy/penguinRotation.png`
+    enemyImg.src = `Images/Enemy/enemyIdle.png`
     enemyImg.onload = () => { }
 
     const rockImg = new Image()
-    rockImg.src = '../Images/Obstacles/rock.png'
+    rockImg.src = 'Images/Obstacles/rock.png'
     rockImg.onload = () => { }
 
     let levelCounter = document.getElementById("levelCounter")
@@ -179,7 +179,7 @@ function startGame() {
 
 
         if (gameOver === true) {
-            enemy.img.src = '../Images/Enemy/penguinEyeChange.png'
+            enemy.img.src = 'Images/Enemy/penguinEyeChange.png'
             if (zeroCounter % 70 === 0 && zeroCounter <= 280) {
                 esx += (enemy.img.width / 5)
             }
@@ -201,7 +201,7 @@ function startGame() {
         if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
             if (Math.floor(Math.random() * 10) === 4) {
                 completeLoop = false
-                enemy.img.src = `../Images/Enemy/penguinRotation.png`
+                enemy.img.src = `Images/Enemy/penguinRotation.png`
                 var frameint = setInterval(frame, 5)
                 function frame() {
                     if (counter % 500 === 0 && rotationCount < 2) {
@@ -263,7 +263,7 @@ function startGame() {
                 coll = detectCollision(hero, rock)
                 if (key === "ArrowLeft") {
                     if (keys[key]) {
-                        hero.img.src = '../Images/Hero/runningLeft.png'
+                        hero.img.src = 'Images/Hero/runningLeft.png'
                         hero.x -= 0.5
                         hero.frames = 4
                         hero.direction = 'left'
@@ -275,7 +275,7 @@ function startGame() {
                 }
                 if (key === "ArrowRight") {
                     if (keys[key]) {
-                        hero.img.src = '../Images/Hero/runningRight.png'
+                        hero.img.src = 'Images/Hero/runningRight.png'
                         hero.x += 0.5
                         hero.frames = 4
                         hero.direction = 'right'
@@ -287,7 +287,7 @@ function startGame() {
                 }
                 if (key === "ArrowUp") {
                     if (keys[key]) {
-                        hero.img.src = '../Images/Hero/runningUp.png'
+                        hero.img.src = 'Images/Hero/runningUp.png'
                         hero.y -= 0.5
                         hero.frames = 4
                         hero.direction = 'up'
@@ -299,7 +299,7 @@ function startGame() {
                 }
                 if (key === "ArrowDown") {
                     if (keys[key]) {
-                        hero.img.src = '../Images/Hero/runningDown.png'
+                        hero.img.src = 'Images/Hero/runningDown.png'
                         hero.y += 0.5
                         hero.frames = 4
                         hero.direction = 'down'
@@ -315,27 +315,27 @@ function startGame() {
     window.onkeyup = function (e) {
         keys[e.key] = false;
         if (hero.direction == 'right') {
-            hero.img.src = '../Images/Hero/idleRight.png'
+            hero.img.src = 'Images/Hero/idleRight.png'
             hero.frames = 4
 
             return
         }
         if (hero.direction == 'left') {
-            hero.img.src = '../Images/Hero/idleLeft.png'
+            hero.img.src = 'Images/Hero/idleLeft.png'
             hero.frames = 4
 
             return
 
         }
         if (hero.direction == 'up') {
-            hero.img.src = '../Images/Hero/idleUp.png'
+            hero.img.src = 'Images/Hero/idleUp.png'
             hero.frames = 4
 
             return
 
         }
         if (hero.direction == 'down') {
-            hero.img.src = '../Images/Hero/idleDown.png'
+            hero.img.src = 'Images/Hero/idleDown.png'
             hero.frames = 4
 
             return
@@ -357,7 +357,6 @@ function startGame() {
             return true
         }
         else
-            // console.log('no collision')
             return false
     }
     function detectCollisionLowerRock(rect1, rect2) {
@@ -365,7 +364,6 @@ function startGame() {
             rect1.x + rect1.w > rect2.x &&
             rect1.y < (rect2.y + 60) + (rect2.h + 35) &&
             rect1.h + rect1.y > (rect2.y + 60)) {
-            console.log('LOWER AREA COLLISION')
             return true
             // window.cancelAnimationFrame(int)
             // window.location.reload()
