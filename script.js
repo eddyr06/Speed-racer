@@ -8,10 +8,17 @@ const init = () => {
     coverCanvas.parentNode.removeChild(coverCanvas)
     // }
     startGame()
+
+    function renameButton() {
+        document.querySelector('#btn').innerHTML = 'New Game'
+    }
+
+    renameButton()
 }
 
 
 function startGame() {
+
 
     const canvas = document.querySelector('#gameCanvas')
     canvas.width = window.innerWidth
@@ -171,6 +178,7 @@ function startGame() {
             if (zeroCounter === 280) {
                 gameOver = 'complete'
                 window.cancelAnimationFrame(int)
+                finalCountdown = true;
             }
             // window.location.reload()
         }
@@ -366,10 +374,17 @@ function startGame() {
     function gameTimer() {
         var minutes = Math.round((seconds - 30) / 60);
         var remainingSeconds = seconds % 60;
+
+        if (gameOver === true) {
+            seconds = 0;
+        }
+
         if (remainingSeconds < 10) {
             remainingSeconds = "0" + remainingSeconds;
         }
         document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
+        // console.log(gameOver)
+
         if (seconds == 0) {
             isRunning = true;
 
@@ -391,6 +406,7 @@ function startGame() {
 
     //New Game Button
     document.querySelector('#btn').addEventListener('click', function () {
+        // startGame();
         window.location.reload();
         return false;
     })
