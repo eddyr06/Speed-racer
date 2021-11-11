@@ -81,8 +81,8 @@ function init() {
         if (levelCounter >= rockLoop) {
             rockLoop++
             rockArr.push({
-                x: Math.floor((Math.random() * 600)) + 50,
-                y: Math.floor((Math.random() * 600)) + 50,
+                x: Math.floor((Math.random() * 1000)) + 50,
+                y: Math.floor((Math.random() * 300)) + 200,
                 w: 70 * 1.7,
                 h: 70,
                 rcollide: false
@@ -127,7 +127,7 @@ function init() {
         addRock()
         for (let rock of rockArr) {
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
-            if (detectCollision(hero, rock)===true){
+            if (detectCollisionLowerRock(hero, rock)===true){
                 rock.rcollide = true
             }
             else rock.rcollide = false
@@ -338,6 +338,15 @@ function init() {
             rect1.y < rect2.y + rect2.h &&
             rect1.h + rect1.y > rect2.y) {
             // console.log('collision')
+            return true
+        }
+    }
+    function detectCollisionLowerRock(rect1, rect2) {
+        if (rect1.x < rect2.x + rect2.w &&
+            rect1.x + rect1.w > rect2.x &&
+            rect1.y < (rect2.y+70) + (rect2.h+70) &&
+            rect1.h + rect1.y > (rect2.y+70)) {
+            console.log('collision')
             return true
         }
     }
