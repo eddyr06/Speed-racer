@@ -371,7 +371,6 @@ function startGame() {
     }
 
 
-
     //Timer
     let isWaiting = false;
     let isRunning = false;
@@ -392,6 +391,7 @@ function startGame() {
         }
 
         timeRemaining.innerText = minutes + ":" + remainingSeconds;
+
 
         if (seconds == 0) {
             isRunning = true;
