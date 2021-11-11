@@ -105,32 +105,24 @@ function startGame() {
     //Game Engine 
     function animate() {
         //This causes the loop
-        console.log('animating')
         int = window.requestAnimationFrame(animate)
-        console.log('animated')
-        // console.log('loop')
 
         //to counts from 0 to infinity 
         counter++;
-        console.log('counting')
         //Clears the canvas ... Flips the page
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        console.log('clear canvas')
         //Resets sprite so it goes backs to beginning when reaches end. 
         if (sx >= (hero.img.width - hero.img.width / hero.frames)) {
             sx = 0
         }
-        console.log('reset sprite')
         //It it controls the speed of how fast its going through the sheet
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
-        console.log('spire movement frame change')
         addRock()
-        console.log('addrock function')
         for (let rock of rockArr) {
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
-            if (detectCollision(hero, rock) === true) {
+            if (detectCollisionLowerRock(hero, rock) === true) {
                 rockWallCollide = true
             }
             if (detectCollisionLowerRock(hero, rock) === true) {
@@ -138,7 +130,6 @@ function startGame() {
             }
             else rock.rcollide = false
         }
-        console.log('rock of rockArr')
         // Resets sprite so it goes backs to beginning when reaches end.
         // It it controls the speed of how fast its going through the sheet
         // if (counter % 150 === 0) {
@@ -172,7 +163,6 @@ function startGame() {
         )
 
         if (gameOver === true) {
-            console.log('game over animation activated')
             enemy.img.src = '../Images/Enemy/penguinEyeChange.png'
             if (zeroCounter % 70 === 0 && zeroCounter <= 280) {
                 esx += (enemy.img.width / 5)
@@ -192,17 +182,13 @@ function startGame() {
     animate()
 
     function movementCheck() {
-        // console.log('movement check called',counter,completeLoop,gameOver)
         if (counter % 50 === 0 && completeLoop === true && gameOver === false) {
-            console.log('loop 1')
             if (Math.floor(Math.random() * 10) === 4) {
                 completeLoop = false
                 enemy.img.src = `../Images/Enemy/penguinRotation.png`
-                console.log('loop 2')
                 var frameint = setInterval(frame, 5)
                 function frame() {
                     if (counter % 500 === 0 && rotationCount < 2) {
-                        // console.log('if loop running ever 500 counts and increasing frame count')
                         esx += (enemy.img.width / 5)
                         rotationCount++
                     }
@@ -210,10 +196,8 @@ function startGame() {
                         completeLoop = 'almost'
                         var moveCheck = setTimeout(frameMove, 1)
                         function frameMove() {
-                            console.log('timer activated')
                             var frameCheck = setInterval(frameCheckF, 1)
                             function frameCheckF() {
-                                console.log('frame 1 running ever 5 milliseconds')
                                 for (let key in keys) {
                                     if (keys[key] == true) {
                                         alert('You lose!')
@@ -228,7 +212,6 @@ function startGame() {
                                     else {
                                         finalInt = setTimeout(frameEnd, 5000)
                                         function frameEnd() {
-                                            console.log('clearingTimeout')
                                             esx = 0
                                             rotationCount = 0
                                             completeLoop = true
@@ -242,7 +225,6 @@ function startGame() {
 
                             setTimeout(frameEnd, 5000)
                             function frameEnd() {
-                                console.log('clearingTimeout')
 
                                 completeLoop = true
                                 clearTimeout(moveCheck)
@@ -255,11 +237,11 @@ function startGame() {
             }
         }
     }
-
+    let coll = false
     function moveHero() {
 
         for (let key in keys) {
-            for (rock of rockArr)
+            for (let rock of rockArr)
                 coll = detectCollision(hero, rock)
             if (key === "ArrowLeft") {
                 if (keys[key]) {
@@ -267,10 +249,11 @@ function startGame() {
                     hero.x -= 0.5
                     hero.frames = 4
                     hero.direction = 'left'
+                    if (coll === true) {
+                        hero.x += 0.6
+                    }
                 }
-                if (coll = true) {
-                    hero.x += 6
-                }
+
             }
             if (key === "ArrowRight") {
                 if (keys[key]) {
@@ -278,10 +261,11 @@ function startGame() {
                     hero.x += 0.5
                     hero.frames = 4
                     hero.direction = 'right'
+                    if (coll === true) {
+                        hero.x -= 0.6
+                    }
                 }
-                if (coll = true) {
-                    hero.x -= 6
-                }
+
             }
             if (key === "ArrowUp") {
                 if (keys[key]) {
@@ -289,10 +273,11 @@ function startGame() {
                     hero.y -= 0.5
                     hero.frames = 4
                     hero.direction = 'up'
+                    if (coll === true) {
+                        hero.y += 0.6
+                    }
                 }
-                if (coll = true) {
-                    hero.y += 6
-                }
+
             }
             if (key === "ArrowDown") {
                 if (keys[key]) {
@@ -300,9 +285,9 @@ function startGame() {
                     hero.y += 0.5
                     hero.frames = 4
                     hero.direction = 'down'
-                }
-                if (coll = true) {
-                    hero.x -= 6
+                    if (coll === true) {
+                        hero.y -= 0.6
+                    }
                 }
             }
 
@@ -351,25 +336,19 @@ function startGame() {
             rect1.x + rect1.w > rect2.x &&
             rect1.y < rect2.y + rect2.h &&
             rect1.h + rect1.y > rect2.y) {
-            // console.log('collision')
             return true
         }
-    }
-    function detectCollisionWall(rect1, rect2) {
-        if (rect1.x < (rect2.x + rect2.w) &&
-            rect1.x + rect1.w >= rect2.x &&
-            rect1.y < rect2.y + rect2.h &&
-            rect1.h + rect1.y > rect2.y) {
-            // console.log('collision')
-            return true
-        }
+        else
+            // console.log('no collision')
+            return false
     }
     function detectCollisionLowerRock(rect1, rect2) {
         if (rect1.x < rect2.x + rect2.w &&
             rect1.x + rect1.w > rect2.x &&
-            rect1.y < (rect2.y + 70) + (rect2.h + 70) &&
+            rect1.y < (rect2.y + 70) + (rect2.h + 35) &&
             rect1.h + rect1.y > (rect2.y + 70)) {
-            console.log('collision')
+            console.log('LOWER AREA COLLISION')
+            return true
             // window.cancelAnimationFrame(int)
             // window.location.reload()
         }
