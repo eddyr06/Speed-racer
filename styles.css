@@ -3,10 +3,13 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
 }
 
 h1{
   text-align: center;
+  font-family: 'Press Start 2P', cursive;
+
 }
 
 #game{
@@ -18,7 +21,7 @@ h1{
 
 
 #coverCanvas{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   background-image: url("../Images/cover.png");
   background-size: cover;
   /* background-repeat: no-repeat; */
@@ -29,7 +32,7 @@ h1{
 }
 
 #gameCanvas {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   background-image: url("../Images/map.png");
   /* background-size: auto; */
   /* background-repeat: no-repeat; */
@@ -58,13 +61,29 @@ h1{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 30px auto;
-  font-size: 50px;
   color: transparent;
 }
 
 audio{
   display: none;
+}
+
+button{
+  text-align: center;
+	display: inline-block;
+	margin:5px;
+  font-weight: 400;
+  padding: 10px;
+    background-color: lightgray;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: #A9A9A9;
+    -webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-o-border-radius: 7px;
+	border-radius: 7px;
+    box-shadow: 0 .2em gray; 
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
 }
 
 
@@ -76,7 +95,6 @@ body {
    background: #596778;
    color: #EEEEEE;
    text-align: center;
-   font-family: "Lato", sans-serif;
 }
 
 @media screen and (max-width: 700px) {

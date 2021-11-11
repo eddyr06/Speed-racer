@@ -6,11 +6,10 @@ let coverCtx = coverCanvas.getContext('2d')
 
 coverCtx.fillStyle = "#D98D00";
 coverCtx.font = "14px Verdana";
-coverCtx.fillText("Instructions", 10, 20);
-coverCtx.fillText("---------------------->", 10, 40);
-
-coverCtx.fillText("Use keyboard arrows", 10, 60);
-coverCtx.fillText("Do not get caught by the evil penguin", 10, 90);
+coverCtx.fillText("Instructions:", 10, 20);
+coverCtx.fillText("Use keyboard arrows", 10, 40);
+coverCtx.fillText("Rocks are cover", 10, 60);
+coverCtx.fillText("DO NOT get caught by the evil penguin", 10, 90);
 
 
 const init = () => {
