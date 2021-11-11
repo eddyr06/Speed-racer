@@ -51,13 +51,24 @@ function init() {
         img: enemyImg
     }
 
-    let rock = {
-        x: 0,
-        y: 0,
-        w: rockImg.width,
-        h: rockImg.height,
-        img: rockImg
-    }
+    // let Rock = class {
+    //     this.x= Math.floor((Math.random()*600)+50)
+    //     this.y= Math.floor((Math.random()*600)+50)
+    //     this.w= rockImg.width
+    //     this.h= rockImg.height
+    //     this.img= rockImg
+    // }
+    setInterval(() => {
+        console.log("add a new enemy", enemies)
+        enemies.push({
+            x: canvas.width,
+            y: Math.random() * canvas.height,
+            w: 25,
+            h: 25,
+            speed: speed
+        })
+        speed++;
+    }, 500)
 
     let rockArr = []
     let id = 0
@@ -73,7 +84,13 @@ function init() {
 
     function addRock() {
         for (let i = levelCounter; levelCounter >= 0; i++) {
-            rockArr.push(new Rock(id++))
+            rockArr.push({
+                x: Math.floor((Math.random()*600)+50),
+                y: Math.floor((Math.random()*600)+50),
+                w = rockImg.width,
+                h=rockImg.height,
+                img = rockImg
+            })
         }
     }
 
@@ -105,12 +122,9 @@ function init() {
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
+        addRock()
         for (let rock of rockArr) {
-            ctx.drawImage(rock, bonuspoint.x, bonuspoint.y += 4, bonuspoint.w, bonuspoint.h)
-            detectBonus(vehicle, bonuspoint)
-            if (detectBonus(vehicle, bonuspoint) === true) {
-                bonuspoint.y += 1000
-            }
+            ctx.drawImage(rock, rock.x, rock.y, rock.w, rock.h)
         }
         //Resets sprite so it goes backs to beginning when reaches end.
         //It it controls the speed of how fast its going through the sheet
