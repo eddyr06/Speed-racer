@@ -69,14 +69,16 @@ function init() {
         if (levelCounter >= rockLoop) {
             rockLoop++
             rockArr.push({
-                x: Math.floor((Math.random()*600))+50,
-                y: Math.floor((Math.random()*600))+50,
-                w: 70*1.7,
+                x: Math.floor((Math.random() * 600)) + 50,
+                y: Math.floor((Math.random() * 600)) + 50,
+                w: 70 * 1.7,
                 h: 70,
             })
         }
     }
+
     let rockLoop = 0
+    levelCounter = 1
     let completeLoop = true
     let gameOver = false
     let zeroCounter = 0
