@@ -129,6 +129,7 @@ function startGame() {
         }
         addRock()
         for (let rock of rockArr) {
+            console.log(rockImg)
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
             if (detectCollisionLowerRock(hero, rock) === true) {
                 rockWallCollide = true
@@ -257,57 +258,57 @@ function startGame() {
     function moveHero() {
 
         for (let key in keys) {
-            for (let rock of rockArr){
-            console.log(coll)
+            for (let rock of rockArr) {
+                console.log(coll)
                 coll = detectCollision(hero, rock)
-            if (key === "ArrowLeft") {
-                if (keys[key]) {
-                    hero.img.src = '../Images/Hero/runningLeft.png'
-                    hero.x -= 0.5
-                    hero.frames = 4
-                    hero.direction = 'left'
-                    if (coll === true) {
-                        hero.x += 0.6
+                if (key === "ArrowLeft") {
+                    if (keys[key]) {
+                        hero.img.src = '../Images/Hero/runningLeft.png'
+                        hero.x -= 0.5
+                        hero.frames = 4
+                        hero.direction = 'left'
+                        if (coll === true) {
+                            hero.x += 0.6
+                        }
                     }
-                }
 
-            }
-            if (key === "ArrowRight") {
-                if (keys[key]) {
-                    hero.img.src = '../Images/Hero/runningRight.png'
-                    hero.x += 0.5
-                    hero.frames = 4
-                    hero.direction = 'right'
-                    if (coll === true) {
-                        hero.x -= 0.6
-                    }
                 }
+                if (key === "ArrowRight") {
+                    if (keys[key]) {
+                        hero.img.src = '../Images/Hero/runningRight.png'
+                        hero.x += 0.5
+                        hero.frames = 4
+                        hero.direction = 'right'
+                        if (coll === true) {
+                            hero.x -= 0.6
+                        }
+                    }
 
-            }
-            if (key === "ArrowUp") {
-                if (keys[key]) {
-                    hero.img.src = '../Images/Hero/runningUp.png'
-                    hero.y -= 0.5
-                    hero.frames = 4
-                    hero.direction = 'up'
-                    if (coll === true) {
-                        hero.y += 0.6
-                    }
                 }
+                if (key === "ArrowUp") {
+                    if (keys[key]) {
+                        hero.img.src = '../Images/Hero/runningUp.png'
+                        hero.y -= 0.5
+                        hero.frames = 4
+                        hero.direction = 'up'
+                        if (coll === true) {
+                            hero.y += 0.6
+                        }
+                    }
 
-            }
-            if (key === "ArrowDown") {
-                if (keys[key]) {
-                    hero.img.src = '../Images/Hero/runningDown.png'
-                    hero.y += 0.5
-                    hero.frames = 4
-                    hero.direction = 'down'
-                    if (coll === true) {
-                        hero.y -= 0.6
+                }
+                if (key === "ArrowDown") {
+                    if (keys[key]) {
+                        hero.img.src = '../Images/Hero/runningDown.png'
+                        hero.y += 0.5
+                        hero.frames = 4
+                        hero.direction = 'down'
+                        if (coll === true) {
+                            hero.y -= 0.6
+                        }
                     }
                 }
             }
-        }
         }
     }
 

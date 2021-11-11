@@ -22,7 +22,7 @@ h1{
 
 #coverCanvas{
   /* border: 1px solid red; */
-  background-image: url("../Images/cover.png");
+  background-image: url("Images/cover.png");
   background-size: cover;
   /* background-repeat: no-repeat; */
   width: 700px;
@@ -33,7 +33,7 @@ h1{
 
 #gameCanvas {
   /* border: 1px solid red; */
-  background-image: url("../Images/map.png");
+  background-image: url("Images/map.png");
   /* background-size: auto; */
   /* background-repeat: no-repeat; */
   width: 700px;
