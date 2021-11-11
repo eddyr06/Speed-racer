@@ -16,12 +16,6 @@ const init = () => {
 
     coverCanvas.parentNode.removeChild(coverCanvas)
     startGame()
-
-    function renameButton() {
-        document.querySelector('#btn').innerHTML = 'New Game'
-    }
-
-    renameButton()
 }
 
 
@@ -192,7 +186,6 @@ function startGame() {
             if (zeroCounter === 280) {
                 gameOver = 'complete'
                 window.cancelAnimationFrame(int)
-                finalCountdown = true;
             }
             // window.location.reload()
         }
@@ -220,8 +213,9 @@ function startGame() {
                         function frameMove() {
                             var frameCheck = setInterval(frameCheckF, 1)
                             function frameCheckF() {
+                                let rockCollideArr = rockArr.map(rock => rock.rcollide)
                                 for (let key in keys) {
-                                    if (keys[key] == true) {
+                                    if (keys[key] == true && !rockCollideArr.includes(true)) {
                                         alert('You lose!')
                                         keys = {};
                                         gameOver = true
@@ -420,9 +414,8 @@ function startGame() {
 
     //New Game Button
     document.querySelector('#btn').addEventListener('click', function () {
-        // startGame();
         window.location.reload();
-        return false;
+        return false
     })
 };
 
