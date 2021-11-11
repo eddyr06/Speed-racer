@@ -60,8 +60,8 @@ function init() {
     let safeZone = {
         x: 0,
         y: 0,
-        w: 1000,
-        h: 100
+        w: 1300,
+        h: 153
     }
 
 
@@ -73,6 +73,7 @@ function init() {
                 y: Math.floor((Math.random() * 600)) + 50,
                 w: 70 * 1.7,
                 h: 70,
+                rcollide: false
             })
         }
     }
@@ -85,13 +86,20 @@ function init() {
     let rotationCount = 0
     let int;
     let finalInt;
+    let rockCollide = false
 
     //Game Engine 
     function animate() {
         //This causes the loop
         int = window.requestAnimationFrame(animate)
         // console.log('loop')
-
+        ctx.fillStyle = "rgba(1, 0, 200, 0)"
+        ctx.fillRect(
+            safeZone.x,
+            safeZone.y,
+            safeZone.w,
+            safeZone.h,
+        )
         //to counts from 0 to infinity 
         counter++;
         //Clears the canvas ... Flips the page
@@ -107,6 +115,10 @@ function init() {
         addRock()
         for (let rock of rockArr) {
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
+            if (detectCollision(hero, rock)===true){
+                rock.rcollide = true
+            }
+            else rock.rcollide = false
         }
         // Resets sprite so it goes backs to beginning when reaches end.
         // It it controls the speed of how fast its going through the sheet
@@ -141,7 +153,7 @@ function init() {
         )
 
         if (gameOver === true) {
-            console.log('game over animation activated')
+            // console.log('game over animation activated')
             enemy.img.src = '../Images/Enemy/penguinEyeChange.png'
             if (zeroCounter % 70 === 0 && zeroCounter <= 280) {
                 esx += (enemy.img.width / 5)
@@ -153,7 +165,10 @@ function init() {
             }
             // window.location.reload()
         }
-        detectCollision(hero, safeZone)
+        if (detectCollision(hero, safeZone) === true){
+            console.log('safe!')
+        }
+
         moveHero()
         movementCheck()
     }
@@ -180,11 +195,15 @@ function init() {
                         var moveCheck = setTimeout(frameMove, 1)
                         function frameMove() {
                             console.log('timer activated')
-                            var frameCheck = setInterval(frameCheckF, 1)
+                            var frameCheck = setInterval(frameCheckF, 50)
+                            
                             function frameCheckF() {
+                                
+                                let rockCollideArr = rockArr.map(rock => rock.rcollide)
+                                console.log(rockCollideArr)
                                 console.log('frame 1 running ever 1 milliseconds')
                                 for (let key in keys) {
-                                    if (keys[key] == true) {
+                                    if (keys[key] == true && !rockCollideArr.includes(true)) {
                                         alert('You lose!')
                                         keys = {};
                                         gameOver = true
@@ -231,7 +250,7 @@ function init() {
             if (key === "ArrowLeft") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningLeft.png'
-                    hero.x -= 0.5
+                    hero.x -= 5
                     hero.frames = 4
                     hero.direction = 'left'
                 }
@@ -239,7 +258,7 @@ function init() {
             if (key === "ArrowRight") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningRight.png'
-                    hero.x += 0.5
+                    hero.x += 5
                     hero.frames = 4
                     hero.direction = 'right'
                 }
@@ -247,7 +266,7 @@ function init() {
             if (key === "ArrowUp") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningUp.png'
-                    hero.y -= 0.5
+                    hero.y -= 5
                     hero.frames = 4
                     hero.direction = 'up'
                 }
@@ -255,7 +274,7 @@ function init() {
             if (key === "ArrowDown") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningDown.png'
-                    hero.y += 0.5
+                    hero.y += 5
                     hero.frames = 4
                     hero.direction = 'down'
                 }
@@ -306,9 +325,8 @@ function init() {
             rect1.x + rect1.w > rect2.x &&
             rect1.y < rect2.y + rect2.h &&
             rect1.h + rect1.y > rect2.y) {
-            console.log('collision')
-            // window.cancelAnimationFrame(int)
-            // window.location.reload()
+            // console.log('collision')
+            return true
         }
     }
 
