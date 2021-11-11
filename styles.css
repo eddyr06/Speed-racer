@@ -20,12 +20,12 @@ h1{
 #coverCanvas{
   border: 1px solid red;
   background-image: url("../Images/cover.png");
-  /* background-size: auto; */
+  background-size: cover;
   /* background-repeat: no-repeat; */
   width: 700px;
   height: 700px;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
 }
 
 #gameCanvas {
@@ -36,7 +36,7 @@ h1{
   width: 700px;
   height: 700px;
   position: relative;
-  z-index: 0;
+  z-index: -1;
 }
 
 #infobar {

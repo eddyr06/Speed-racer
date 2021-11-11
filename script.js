@@ -1,19 +1,17 @@
-// function loading() {
+const init = () => {
+    const coverCanvas = document.querySelector('#coverCanvas')
+    coverCanvas.width = window.innerWidth
+    coverCanvas.height = 700
+    const coverCtx = coverCanvas.getContext('2d')
+
+    // coverCanvas.onclick = function () {
+    coverCanvas.parentNode.removeChild(coverCanvas)
+    // }
+    startGame()
+}
 
 
-
-
-//     init();
-// }
-
-const canvas = document.querySelector('#coverCanvas')
-canvas.width = window.innerWidth
-canvas.height = 700
-const ctx = canvas.getContext('2d')
-
-
-
-function init() {
+function startGame() {
 
     const canvas = document.querySelector('#gameCanvas')
     canvas.width = window.innerWidth
@@ -132,10 +130,10 @@ function init() {
         console.log('addrock function')
         for (let rock of rockArr) {
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
-            if(detectCollision(hero, rock) === true){
+            if (detectCollision(hero, rock) === true) {
                 rockWallCollide = true
             }
-            if (detectCollisionLowerRock(hero, rock)===true){
+            if (detectCollisionLowerRock(hero, rock) === true) {
                 rock.rcollide = true
             }
             else rock.rcollide = false
@@ -262,7 +260,7 @@ function init() {
 
         for (let key in keys) {
             for (rock of rockArr)
-            coll = detectCollision(hero, rock)
+                coll = detectCollision(hero, rock)
             if (key === "ArrowLeft") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningLeft.png'
@@ -270,8 +268,8 @@ function init() {
                     hero.frames = 4
                     hero.direction = 'left'
                 }
-                if (coll = true){
-                    hero.x+=6
+                if (coll = true) {
+                    hero.x += 6
                 }
             }
             if (key === "ArrowRight") {
@@ -281,8 +279,8 @@ function init() {
                     hero.frames = 4
                     hero.direction = 'right'
                 }
-                if (coll = true){
-                    hero.x-=6
+                if (coll = true) {
+                    hero.x -= 6
                 }
             }
             if (key === "ArrowUp") {
@@ -292,8 +290,8 @@ function init() {
                     hero.frames = 4
                     hero.direction = 'up'
                 }
-                if (coll = true){
-                    hero.y+=6
+                if (coll = true) {
+                    hero.y += 6
                 }
             }
             if (key === "ArrowDown") {
@@ -303,8 +301,8 @@ function init() {
                     hero.frames = 4
                     hero.direction = 'down'
                 }
-                if (coll = true){
-                    hero.x-=6
+                if (coll = true) {
+                    hero.x -= 6
                 }
             }
 
@@ -369,8 +367,8 @@ function init() {
     function detectCollisionLowerRock(rect1, rect2) {
         if (rect1.x < rect2.x + rect2.w &&
             rect1.x + rect1.w > rect2.x &&
-            rect1.y < (rect2.y+70) + (rect2.h+70) &&
-            rect1.h + rect1.y > (rect2.y+70)) {
+            rect1.y < (rect2.y + 70) + (rect2.h + 70) &&
+            rect1.h + rect1.y > (rect2.y + 70)) {
             console.log('collision')
             // window.cancelAnimationFrame(int)
             // window.location.reload()
