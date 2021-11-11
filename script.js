@@ -85,7 +85,8 @@ function init() {
                 y: Math.floor((Math.random() * 300)) + 200,
                 w: 70 * 1.7,
                 h: 70,
-                rcollide: false
+                rcollide: false,
+                rockWallCollide: false
             })
         }
     }
@@ -98,7 +99,7 @@ function init() {
     let rotationCount = 0
     let int;
     let finalInt;
-    let rockCollide = false
+    let rockWallCollide = false
 
     //Game Engine 
     function animate() {
@@ -127,6 +128,9 @@ function init() {
         addRock()
         for (let rock of rockArr) {
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
+            if(detectCollision(hero, rock) === true){
+                rockWallCollide = true
+            }
             if (detectCollisionLowerRock(hero, rock)===true){
                 rock.rcollide = true
             }
@@ -259,12 +263,17 @@ function init() {
     function moveHero() {
 
         for (let key in keys) {
+            for (rock of rockArr)
+            coll = detectCollision(hero, rock)
             if (key === "ArrowLeft") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningLeft.png'
                     hero.x -= 5
                     hero.frames = 4
                     hero.direction = 'left'
+                }
+                if (coll = true){
+                    hero.x+=6
                 }
             }
             if (key === "ArrowRight") {
@@ -274,6 +283,9 @@ function init() {
                     hero.frames = 4
                     hero.direction = 'right'
                 }
+                if (coll = true){
+                    hero.x-=6
+                }
             }
             if (key === "ArrowUp") {
                 if (keys[key]) {
@@ -282,6 +294,9 @@ function init() {
                     hero.frames = 4
                     hero.direction = 'up'
                 }
+                if (coll = true){
+                    hero.y+=6
+                }
             }
             if (key === "ArrowDown") {
                 if (keys[key]) {
@@ -289,6 +304,9 @@ function init() {
                     hero.y += 5
                     hero.frames = 4
                     hero.direction = 'down'
+                }
+                if (coll = true){
+                    hero.x-=6
                 }
             }
 
@@ -335,6 +353,15 @@ function init() {
     function detectCollision(rect1, rect2) {
         if (rect1.x < rect2.x + rect2.w &&
             rect1.x + rect1.w > rect2.x &&
+            rect1.y < rect2.y + rect2.h &&
+            rect1.h + rect1.y > rect2.y) {
+            // console.log('collision')
+            return true
+        }
+    }
+    function detectCollisionWall(rect1, rect2) {
+        if (rect1.x < (rect2.x + rect2.w) &&
+            rect1.x + rect1.w >= rect2.x &&
             rect1.y < rect2.y + rect2.h &&
             rect1.h + rect1.y > rect2.y) {
             // console.log('collision')
