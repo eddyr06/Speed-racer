@@ -9,6 +9,14 @@ h1{
   text-align: center;
 }
 
+#game{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
 #coverCanvas{
   border: 1px solid red;
   background-image: url("../Images/cover.png");
@@ -17,14 +25,7 @@ h1{
   width: 700px;
   height: 700px;
   position: absolute;
-  z-index: 1;
-}
-
-#game{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  z-index: -1;
 }
 
 #gameCanvas {

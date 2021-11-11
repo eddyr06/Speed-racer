@@ -1,12 +1,15 @@
-function loading() {
+// function loading() {
 
 
 
 
-    init();
-}
+//     init();
+// }
 
-
+const canvas = document.querySelector('#coverCanvas')
+canvas.width = window.innerWidth
+canvas.height = 700
+const ctx = canvas.getContext('2d')
 
 
 
@@ -72,8 +75,8 @@ function init() {
     let safeZone = {
         x: 0,
         y: 0,
-        w: 1300,
-        h: 153
+        w: 1000,
+        h: 100
     }
 
 
@@ -81,11 +84,10 @@ function init() {
         if (levelCounter >= rockLoop) {
             rockLoop++
             rockArr.push({
-                x: Math.floor((Math.random() * 1000)) + 50,
-                y: Math.floor((Math.random() * 300)) + 200,
+                x: Math.floor((Math.random() * 600)) + 50,
+                y: Math.floor((Math.random() * 600)) + 50,
                 w: 70 * 1.7,
                 h: 70,
-                rcollide: false
             })
         }
     }
@@ -98,40 +100,37 @@ function init() {
     let rotationCount = 0
     let int;
     let finalInt;
-    let rockCollide = false
 
     //Game Engine 
     function animate() {
         //This causes the loop
+        console.log('animating')
         int = window.requestAnimationFrame(animate)
+        console.log('animated')
         // console.log('loop')
-        ctx.fillStyle = "rgba(1, 0, 200, 0)"
-        ctx.fillRect(
-            safeZone.x,
-            safeZone.y,
-            safeZone.w,
-            safeZone.h,
-        )
+
         //to counts from 0 to infinity 
         counter++;
+        console.log('counting')
         //Clears the canvas ... Flips the page
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+        console.log('clear canvas')
         //Resets sprite so it goes backs to beginning when reaches end. 
         if (sx >= (hero.img.width - hero.img.width / hero.frames)) {
             sx = 0
         }
+        console.log('reset sprite')
         //It it controls the speed of how fast its going through the sheet
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
+        console.log('spire movement frame change')
         addRock()
+        console.log('addrock function')
         for (let rock of rockArr) {
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
-            if (detectCollisionLowerRock(hero, rock)===true){
-                rock.rcollide = true
-            }
-            else rock.rcollide = false
         }
+        console.log('rock of rockArr')
         // Resets sprite so it goes backs to beginning when reaches end.
         // It it controls the speed of how fast its going through the sheet
         // if (counter % 150 === 0) {
@@ -165,7 +164,7 @@ function init() {
         )
 
         if (gameOver === true) {
-            // console.log('game over animation activated')
+            console.log('game over animation activated')
             enemy.img.src = '../Images/Enemy/penguinEyeChange.png'
             if (zeroCounter % 70 === 0 && zeroCounter <= 280) {
                 esx += (enemy.img.width / 5)
@@ -177,10 +176,7 @@ function init() {
             }
             // window.location.reload()
         }
-        if (detectCollision(hero, safeZone) === true){
-            console.log('safe!')
-        }
-
+        detectCollision(hero, safeZone)
         moveHero()
         movementCheck()
     }
@@ -207,15 +203,11 @@ function init() {
                         var moveCheck = setTimeout(frameMove, 1)
                         function frameMove() {
                             console.log('timer activated')
-                            var frameCheck = setInterval(frameCheckF, 50)
-                            
+                            var frameCheck = setInterval(frameCheckF, 1)
                             function frameCheckF() {
-                                
-                                let rockCollideArr = rockArr.map(rock => rock.rcollide)
-                                console.log(rockCollideArr)
-                                console.log('frame 1 running ever 1 milliseconds')
+                                console.log('frame 1 running ever 5 milliseconds')
                                 for (let key in keys) {
-                                    if (keys[key] == true && !rockCollideArr.includes(true)) {
+                                    if (keys[key] == true) {
                                         alert('You lose!')
                                         keys = {};
                                         gameOver = true
@@ -262,7 +254,7 @@ function init() {
             if (key === "ArrowLeft") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningLeft.png'
-                    hero.x -= 5
+                    hero.x -= 0.5
                     hero.frames = 4
                     hero.direction = 'left'
                 }
@@ -270,7 +262,7 @@ function init() {
             if (key === "ArrowRight") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningRight.png'
-                    hero.x += 5
+                    hero.x += 0.5
                     hero.frames = 4
                     hero.direction = 'right'
                 }
@@ -278,7 +270,7 @@ function init() {
             if (key === "ArrowUp") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningUp.png'
-                    hero.y -= 5
+                    hero.y -= 0.5
                     hero.frames = 4
                     hero.direction = 'up'
                 }
@@ -286,7 +278,7 @@ function init() {
             if (key === "ArrowDown") {
                 if (keys[key]) {
                     hero.img.src = '../Images/Hero/runningDown.png'
-                    hero.y += 5
+                    hero.y += 0.5
                     hero.frames = 4
                     hero.direction = 'down'
                 }
@@ -337,17 +329,9 @@ function init() {
             rect1.x + rect1.w > rect2.x &&
             rect1.y < rect2.y + rect2.h &&
             rect1.h + rect1.y > rect2.y) {
-            // console.log('collision')
-            return true
-        }
-    }
-    function detectCollisionLowerRock(rect1, rect2) {
-        if (rect1.x < rect2.x + rect2.w &&
-            rect1.x + rect1.w > rect2.x &&
-            rect1.y < (rect2.y+70) + (rect2.h+70) &&
-            rect1.h + rect1.y > (rect2.y+70)) {
             console.log('collision')
-            return true
+            // window.cancelAnimationFrame(int)
+            // window.location.reload()
         }
     }
 
