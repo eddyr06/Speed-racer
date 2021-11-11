@@ -257,7 +257,8 @@ function startGame() {
     function moveHero() {
 
         for (let key in keys) {
-            for (let rock of rockArr)
+            for (let rock of rockArr){
+            console.log(coll)
                 coll = detectCollision(hero, rock)
             if (key === "ArrowLeft") {
                 if (keys[key]) {
@@ -306,7 +307,7 @@ function startGame() {
                     }
                 }
             }
-
+        }
         }
     }
 
