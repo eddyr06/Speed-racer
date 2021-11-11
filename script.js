@@ -69,26 +69,14 @@ function init() {
         if (levelCounter >= rockLoop) {
             rockLoop++
             rockArr.push({
-<<<<<<< HEAD
                 x: Math.floor((Math.random()*600))+50,
                 y: Math.floor((Math.random()*600))+50,
                 w: 70*1.7,
-=======
-                x: Math.floor((Math.random() * 600) + 50),
-                y: Math.floor((Math.random() * 600) + 50),
-                w: 70,
->>>>>>> 7c5c9abe8aab859a8957b4f2ae68d05e110c2c85
                 h: 70,
             })
         }
     }
-<<<<<<< HEAD
     let rockLoop = 0
-    let levelCounter = 0
-=======
-
-    levelCounter = 1
->>>>>>> 7c5c9abe8aab859a8957b4f2ae68d05e110c2c85
     let completeLoop = true
     let gameOver = false
     let zeroCounter = 0
@@ -99,33 +87,25 @@ function init() {
     //Game Engine 
     function animate() {
         //This causes the loop
-        console.log('animating')
         int = window.requestAnimationFrame(animate)
-        console.log('animated')
         // console.log('loop')
 
         //to counts from 0 to infinity 
         counter++;
-        console.log('counting')
         //Clears the canvas ... Flips the page
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        console.log('clear canvas')
         //Resets sprite so it goes backs to beginning when reaches end. 
         if (sx >= (hero.img.width - hero.img.width / hero.frames)) {
             sx = 0
         }
-        console.log('reset sprite')
         //It it controls the speed of how fast its going through the sheet
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
-        console.log('spire movement frame change')
         addRock()
-        console.log('addrock function')
         for (let rock of rockArr) {
             ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
         }
-        console.log('rock of rockArr')
         // Resets sprite so it goes backs to beginning when reaches end.
         // It it controls the speed of how fast its going through the sheet
         // if (counter % 150 === 0) {
