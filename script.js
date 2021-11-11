@@ -1,6 +1,18 @@
+function loading() {
+
+
+
+
+    init();
+}
+
+
+
+
+
 function init() {
 
-    const canvas = document.querySelector('canvas')
+    const canvas = document.querySelector('#gameCanvas')
     canvas.width = window.innerWidth
     canvas.height = 700
     const ctx = canvas.getContext('2d')
