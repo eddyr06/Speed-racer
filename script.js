@@ -26,6 +26,9 @@ function init() {
     rockImg.src = '../Images/Obstacles/rock.png'
     rockImg.onload = () => { }
 
+    let levelCounter = document.getElementById("levelCounter")
+
+
     let counter = 0;
     let esx = 0
     let sx = 0
@@ -77,7 +80,7 @@ function init() {
         }
     }
 
-    let levelCounter = 0
+    levelCounter = 1
     let completeLoop = true
     let gameOver = false
     let zeroCounter = 0
