@@ -2,11 +2,18 @@ const init = () => {
     const coverCanvas = document.querySelector('#coverCanvas')
     coverCanvas.width = window.innerWidth
     coverCanvas.height = 700
-    const coverCtx = coverCanvas.getContext('2d')
+    let coverCtx = coverCanvas.getContext('2d')
 
-    // coverCanvas.onclick = function () {
+
+    coverCtx.fillStyle = "#D98D00";
+    coverCtx.font = "14px Verdana";
+    coverCtx.fillText("Instructions", 10, 20);
+    coverCtx.fillText("---------------------->", 10, 40);
+
+    coverCtx.fillText("Use keyboard arrows", 10, 60);
+    coverCtx.fillText("Do not get caught by the evil penguin", 10, 90);
+
     coverCanvas.parentNode.removeChild(coverCanvas)
-    // }
     startGame()
 }
 
@@ -16,7 +23,7 @@ function startGame() {
     const canvas = document.querySelector('#gameCanvas')
     canvas.width = window.innerWidth
     canvas.height = 700
-    const ctx = canvas.getContext('2d')
+    let ctx = canvas.getContext('2d')
 
     const heroImg = new Image()
     heroImg.src = `../Images/Hero/idleLeft.png`
@@ -40,7 +47,7 @@ function startGame() {
     rockImg.onload = () => { }
 
     let levelCounter = document.getElementById("levelCounter")
-
+    let timeRemaining = document.getElementById("waiting_time")
 
     let counter = 0;
     let esx = 0
@@ -161,6 +168,14 @@ function startGame() {
             enemy.w, //width
             enemy.h//height
         )
+
+        ctx.fillStyle = "black";
+        ctx.font = "20px Verdana";
+        ctx.fillText(`Time Remaning: ${timeRemaining}`, 10, 20);
+        ctx.fillText(`Level: ${levelCounter}`, 10, 40);
+        ctx.fillText("Use keyboard arrows", 10, 60);
+        ctx.fillText("Take cover with the rocks", 10, 90);
+
 
         if (gameOver === true) {
             enemy.img.src = '../Images/Enemy/penguinEyeChange.png'
@@ -365,12 +380,18 @@ function startGame() {
     let finalCountdown = false;
 
     function gameTimer() {
-        var minutes = Math.round((seconds - 30) / 60);
-        var remainingSeconds = seconds % 60;
+        let minutes = Math.round((seconds - 30) / 60);
+        let remainingSeconds = seconds % 60;
+
+        if (gameOver === true) {
+            seconds = 0;
+        }
+
         if (remainingSeconds < 10) {
             remainingSeconds = "0" + remainingSeconds;
         }
-        document.getElementById('waiting_time').innerHTML = minutes + ":" + remainingSeconds;
+        timeRemaining.innerHTML = minutes + ":" + remainingSeconds;
+
         if (seconds == 0) {
             isRunning = true;
 
