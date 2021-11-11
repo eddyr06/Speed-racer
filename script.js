@@ -153,7 +153,7 @@ function init() {
             zeroCounter++
             if (zeroCounter === 280) {
                 gameOver = 'complete'
-                // alert('Game Over')
+                window.cancelAnimationFrame(int)
             }
             // window.location.reload()
         }
@@ -191,7 +191,6 @@ function init() {
                                     if (keys[key] == true) {
                                         alert('You lose!')
                                         keys = {};
-                                        window.cancelAnimationFrame(int)
                                         gameOver = true
                                         esx = 0
                                         clearInterval(frameCheck)
