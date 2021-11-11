@@ -182,7 +182,7 @@ function init() {
                             console.log('timer activated')
                             var frameCheck = setInterval(frameCheckF, 1)
                             function frameCheckF() {
-                                console.log('frame 1 running ever 5 milliseconds')
+                                console.log('frame 1 running ever 1 milliseconds')
                                 for (let key in keys) {
                                     if (keys[key] == true) {
                                         alert('You lose!')
