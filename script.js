@@ -51,27 +51,7 @@ function init() {
         img: enemyImg
     }
 
-    // let Rock = class {
-    //     this.x= Math.floor((Math.random()*600)+50)
-    //     this.y= Math.floor((Math.random()*600)+50)
-    //     this.w= rockImg.width
-    //     this.h= rockImg.height
-    //     this.img= rockImg
-    // }
-    setInterval(() => {
-        console.log("add a new enemy", enemies)
-        enemies.push({
-            x: canvas.width,
-            y: Math.random() * canvas.height,
-            w: 25,
-            h: 25,
-            speed: speed
-        })
-        speed++;
-    }, 500)
-
     let rockArr = []
-    let id = 0
 
     //Safe Zone
     let safeZone = {
@@ -83,13 +63,12 @@ function init() {
 
 
     function addRock() {
-        for (let i = levelCounter; levelCounter >= 0; i++) {
+        for (let i = 0; levelCounter >= i; i++) {
             rockArr.push({
                 x: Math.floor((Math.random()*600)+50),
                 y: Math.floor((Math.random()*600)+50),
-                w = rockImg.width,
-                h=rockImg.height,
-                img = rockImg
+                w: 70,
+                h: 70,
             })
         }
     }
@@ -105,29 +84,35 @@ function init() {
     //Game Engine 
     function animate() {
         //This causes the loop
+        console.log('animating')
         int = window.requestAnimationFrame(animate)
-
+        console.log('animated')
         // console.log('loop')
 
         //to counts from 0 to infinity 
         counter++;
-
+        console.log('counting')
         //Clears the canvas ... Flips the page
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+        console.log('clear canvas')
         //Resets sprite so it goes backs to beginning when reaches end. 
         if (sx >= (hero.img.width - hero.img.width / hero.frames)) {
             sx = 0
         }
+        console.log('reset sprite')
         //It it controls the speed of how fast its going through the sheet
         if (counter % 5 === 0) {
             sx += (hero.img.width / hero.frames)
         }
+        console.log('spire movement frame change')
         addRock()
+        console.log('addrock function')
         for (let rock of rockArr) {
-            ctx.drawImage(rock, rock.x, rock.y, rock.w, rock.h)
+            ctx.drawImage(rockImg, rock.x, rock.y, rock.w, rock.h)
         }
-        //Resets sprite so it goes backs to beginning when reaches end.
-        //It it controls the speed of how fast its going through the sheet
+        console.log('rock of rockArr')
+        // Resets sprite so it goes backs to beginning when reaches end.
+        // It it controls the speed of how fast its going through the sheet
         // if (counter % 150 === 0) {
         //     esx += enemy.img.width / enemy.frames
         // }
