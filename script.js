@@ -26,6 +26,9 @@ function init() {
     rockImg.src = '../Images/Obstacles/rock.png'
     rockImg.onload = () => { }
 
+    let levelCounter = document.getElementById("levelCounter")
+
+
     let counter = 0;
     let esx = 0
     let sx = 0
@@ -66,15 +69,26 @@ function init() {
         if (levelCounter >= rockLoop) {
             rockLoop++
             rockArr.push({
+<<<<<<< HEAD
                 x: Math.floor((Math.random()*600))+50,
                 y: Math.floor((Math.random()*600))+50,
                 w: 70*1.7,
+=======
+                x: Math.floor((Math.random() * 600) + 50),
+                y: Math.floor((Math.random() * 600) + 50),
+                w: 70,
+>>>>>>> 7c5c9abe8aab859a8957b4f2ae68d05e110c2c85
                 h: 70,
             })
         }
     }
+<<<<<<< HEAD
     let rockLoop = 0
     let levelCounter = 0
+=======
+
+    levelCounter = 1
+>>>>>>> 7c5c9abe8aab859a8957b4f2ae68d05e110c2c85
     let completeLoop = true
     let gameOver = false
     let zeroCounter = 0
